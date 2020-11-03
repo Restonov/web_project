@@ -1,0 +1,9 @@
+.lang-panel {
+    margin-top: 5px;
+    list-style-type: none;
+}
+
+.lang-panel .part {
+    display: inline;
+    margin-right: 5px;
+}

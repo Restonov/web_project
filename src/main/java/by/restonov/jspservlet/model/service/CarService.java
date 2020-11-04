@@ -10,6 +10,20 @@ import java.util.Optional;
 
 public class CarService {
 
+    public Optional<Car> checkCarAvailability(int carId) {
+        Optional<Car> optionalCar;
+        optionalCar = findCarById(carId);
+        if (optionalCar.isPresent()) {
+            Car car = optionalCar.get();
+            if (car.getState() == Car.State.AVAILABLE) {
+                optionalCar = Optional.of(car);
+            } else {
+                optionalCar = Optional.empty();
+            }
+        }
+        return optionalCar;
+    }
+
     public boolean changeCarState(Car car, Car.State state) {
         boolean result = false;
         CarDaoImpl dao = new CarDaoImpl();

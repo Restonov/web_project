@@ -3,7 +3,6 @@ package by.restonov.jspservlet.entity.builder;
 import by.restonov.jspservlet.entity.Car;
 import by.restonov.jspservlet.manager.ParameterName;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

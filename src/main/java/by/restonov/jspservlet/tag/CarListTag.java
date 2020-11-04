@@ -6,7 +6,6 @@ import by.restonov.jspservlet.model.service.CarService;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class CarListTag extends TagSupport {

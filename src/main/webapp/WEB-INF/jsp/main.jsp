@@ -9,11 +9,25 @@
     <title><fmt:message key="main.title"/></title>
 </head>
 <body>
+    <%--Pages header--%>
     <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
     <%--@elvariable id="activate_admin_panel" type="java.lang.Boolean"--%>
     <c:if test="${activate_admin_panel}">
         <c:import url="/WEB-INF/jsp/admin/admin_panel.jsp"/>
     </c:if>
+    <%--@elvariable id="car_not_available_alert" type="java.lang.Boolean"--%>
+    <c:if test="${car_not_available_alert}">
+        <div class="alert alert-dismissible fade show alert-danger" role="alert" style="margin-bottom: 0; text-align: center">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <strong>
+                <fmt:message key="alert.car.not.available"/>
+            </strong>
+        </div>
+    </c:if>
+
+    <%--Adds carousel--%>
     <main role="main"><nav aria-label="Page navigation example">
     </nav>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -65,7 +79,6 @@
         </div>
 
 
-
         <!-- Marketing messaging and featurettes
         ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -113,15 +126,12 @@
 
 
 
-
-
-
-
             <!-- /END THE FEATURETTES -->
 
         </div><!-- /.container -->
 
-        <c:import url="/WEB-INF/jsp/common/footer.jsp" charEncoding="utf-8"/>
+
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" charEncoding="utf-8"/>
 
 </body>
 </html>

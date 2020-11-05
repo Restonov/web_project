@@ -11,32 +11,42 @@
 
     <tag>
         <name>login_button</name>
-        <tag-class>by.restonov.jspservlet.tag.LogInButtonTag</tag-class>
+        <tag-class>by.restonov.tyrent.tag.LogInButtonTag</tag-class>
         <body-content>empty</body-content>
     </tag>
     <tag>
         <name>book_car_button</name>
-        <tag-class>by.restonov.jspservlet.tag.BookCarButtonTag</tag-class>
+        <tag-class>by.restonov.tyrent.tag.BookCarButtonTag</tag-class>
         <body-content>empty</body-content>
     </tag>
     <tag>
         <name>user_list</name>
-        <tag-class>by.restonov.jspservlet.tag.UserListTag</tag-class>
+        <tag-class>by.restonov.tyrent.tag.AdminUserListTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>order_list</name>
+        <tag-class>by.restonov.tyrent.tag.AdminOrderListTag</tag-class>
         <body-content>empty</body-content>
     </tag>
     <tag>
         <name>car_list</name>
-        <tag-class>by.restonov.jspservlet.tag.CarListTag</tag-class>
+        <tag-class>by.restonov.tyrent.tag.AdminCarListTag</tag-class>
         <body-content>empty</body-content>
     </tag>
     <tag>
         <name>default_language</name>
-        <tag-class>by.restonov.jspservlet.tag.DefaultLanguageTag</tag-class>
+        <tag-class>by.restonov.tyrent.tag.DefaultLanguageTag</tag-class>
         <body-content>empty</body-content>
     </tag>
     <tag>
         <name>current_user</name>
-        <tag-class>by.restonov.jspservlet.tag.CurrentUserTag</tag-class>
+        <tag-class>by.restonov.tyrent.tag.CurrentUserTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>current_user_order</name>
+        <tag-class>by.restonov.tyrent.tag.CurrentUserOrderTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 </taglib>

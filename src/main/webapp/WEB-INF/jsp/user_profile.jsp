@@ -7,8 +7,23 @@
     <title>Title</title>
 </head>
 <body>
+<jsp:useBean id="user" scope="session" type="by.restonov.tyrent.entity.User"/>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
-<jsp:useBean id="user" scope="session" type="by.restonov.jspservlet.entity.User"/>
+<%--@elvariable id="activate_admin_panel" type="java.lang.Boolean"--%>
+<c:if test="${activate_admin_panel}">
+    <c:import url="/WEB-INF/jsp/admin/admin_panel.jsp"/>
+</c:if>
+<%--@elvariable id="car_not_available_alert" type="java.lang.Boolean"--%>
+<c:if test="${successful_order}">
+    <div class="alert alert-dismissible fade show alert-success" role="alert" style="margin-bottom: 0; text-align: center">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>
+            <fmt:message key="alert.successful.order"/>
+        </strong>
+    </div>
+</c:if>
 
 <div class="container" style="margin-top: 40px">
     <div class="main-body">
@@ -21,7 +36,7 @@
                             <div class="mt-3">
                                 <h4>${user.login}</h4>
                                 <p class="text-secondary mb-1">${user.role.toString().toLowerCase()}</p>
-                                <p class="text-secondary mb-1">${user.status.toString().toLowerCase()}</p>
+                                <p class="text-secondary mb-1">${user.state.toString().toLowerCase()}</p>
                                 <button class="btn btn-outline-primary">Edit</button>
                             </div>
                         </div>
@@ -52,12 +67,13 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Full Name</h6>
+                                <h6 class="mb-0">Orders</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 ${user.firstName} ${user.lastName}
@@ -78,24 +94,32 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Full Name</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                ${user.firstName} ${user.lastName}
+                                <h6 class="mb-0">Orders</h6>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Email</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                ${user.email}
-                            </div>
-                        </div>
+
+                        <table class="table" style="margin-top: 15px">
+                            <thead>
+                            <tr>
+                                <th>order_id</th>
+                                <th>Car name</th>
+                                <th>Car cost / day</th>
+                                <th>Order creation date</th>
+                                <th>Order state</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <ctg:current_user_order/>
+                            </tbody>
+                        </table>
+
+
+
+
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

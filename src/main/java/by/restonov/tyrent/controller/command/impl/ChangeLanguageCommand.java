@@ -14,6 +14,7 @@ public class ChangeLanguageCommand implements ActionCommand {
         String page;
         String language = request.getParameter(ParameterName.PAGE_LANGUAGE);
         HttpSession session = request.getSession();
+        //TODO use Locale
         session.setAttribute(AttributeName.LOCALE, language);
         page = PageName.MAIN_PAGE;
         return page;

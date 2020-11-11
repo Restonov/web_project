@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.pool;
 
-import by.restonov.tyrent.exception.ConnectionPoolException;
+import by.restonov.tyrent.model.exception.ConnectionPoolException;
 
 import java.sql.*;
 import java.util.Map;
@@ -57,7 +57,7 @@ public class ProxyConnection implements Connection {
     @Override
     public void close() {
         try {
-            ConnectionPool.getInstance().releaseConnection(connection);
+            ConnectionPool.INSTANCE.releaseConnection(connection);
         } catch (ConnectionPoolException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.pool;
 
-import by.restonov.tyrent.exception.ConnectionPoolException;
+import by.restonov.tyrent.model.exception.ConnectionPoolException;
 import by.restonov.tyrent.manager.ConfigurationManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,8 +9,11 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Enumeration;
 
-class ConnectionCreator {
+enum ConnectionCreator {
+    INSTANCE;
+
     private static final Logger logger = LogManager.getLogger();
 
     private static final String DRIVER = ConfigurationManager.getProperty("database.driver");
@@ -26,28 +29,27 @@ class ConnectionCreator {
             proxyConnection = new ProxyConnection(connection);
             return proxyConnection;
         } catch (SQLException e) {
-            logger.error("Error while getting connection", e);
             throw new ConnectionPoolException("Error while getting connection", e);
         }
     }
 
-    void registerDriver() throws ConnectionPoolException {
+    void registerDriver() {
         try {
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
             logger.fatal("Driver error", e);
-            throw new ConnectionPoolException("Driver error", e);
         }
     }
 
     void deregisterDriver() throws ConnectionPoolException {
-        Driver driver;
-        try {
-            driver = DriverManager.getDriver(DRIVER);
-            DriverManager.deregisterDriver(driver);
-        } catch (SQLException e) {
-            logger.error("Error while deregistering driver", e);
-            throw new ConnectionPoolException("Error while deregistering driver", e);
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            Driver driver = drivers.nextElement();
+            try {
+                DriverManager.deregisterDriver(driver);
+            } catch (SQLException e) {
+                logger.error("Error while deregister drivers", e);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.entity.User;
+import by.restonov.tyrent.model.entity.User;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageContentManager;
 
@@ -20,12 +20,23 @@ public class BookCarButtonTag extends TagSupport {
         StringBuilder button = new StringBuilder("<input class=\"btn btn-outline-secondary\" type=\"submit\" value=\"");
                 button.append(textBookCar).append("\"/>");
         if (user != null) {
-            button.append("<input type=\"hidden\" name=\"command\" value=\"make_order\"/>");
-            try {
-                JspWriter out = pageContext.getOut();
-                out.write(button.toString());
-            } catch (IOException e) {
-                throw new JspException(e.getMessage());
+            if (user.getState() == User.State.ACTIVATED) {
+                button.append("<input type=\"hidden\" name=\"command\" value=\"make_order\"/>");
+                try {
+                    JspWriter out = pageContext.getOut();
+                    out.write(button.toString());
+                } catch (IOException e) {
+                    throw new JspException(e.getMessage());
+                }
+            } else {
+                button.append("<input type=\"hidden\" name=\"path\" value=\"user_profile_page\"/>")
+                        .append("<input type=\"hidden\" name=\"command\" value=\"forward\"/>");
+                try {
+                    JspWriter out = pageContext.getOut();
+                    out.write(button.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             button.append("<input type=\"hidden\" name=\"path\" value=\"login_page\"/>")

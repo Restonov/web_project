@@ -9,19 +9,17 @@
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
-<c:import url="/WEB-INF/jsp/admin/admin_panel.jsp" charEncoding="utf-8"/>
 
-<div style="height: 500px">
+<div style="margin-bottom: 30px">
 <table class="table" style="margin-top: 30px">
     <thead>
     <tr>
         <th>id</th>
         <th>Car model</th>
         <th>Cost per day</th>
-        <th>Car type</th>
         <th>Eng Description</th>
         <th>Rus Description</th>
-        <th>Images</th>
+        <th>Current state</th>
     </tr>
     </thead>
     <tbody>

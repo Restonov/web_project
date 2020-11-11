@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao;
 
-import by.restonov.tyrent.exception.DaoException;
+import by.restonov.tyrent.model.exception.DaoException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ public abstract class AbstractDao <K, T>{
     public abstract Optional<T> findById(K id) throws DaoException;
     public abstract Optional<T> findByName(String name) throws DaoException;
     public abstract boolean add(T entity) throws DaoException;
-    public abstract T update(T entity) throws DaoException;
+    public abstract boolean update(T entity) throws DaoException;
     public abstract boolean delete(K id) throws DaoException;
 
     /**

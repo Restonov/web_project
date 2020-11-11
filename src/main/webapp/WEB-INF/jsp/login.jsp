@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ctg" uri="custom_tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
@@ -12,6 +13,13 @@
 </head>
 <body>
     <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
+
+    <%--@elvariable id="user_activated" type="java.lang.Boolean"--%>
+    <c:if test="${user_activated}">
+        <ctg:page_alert type="success" hide="true">
+            <fmt:message key="message.activated"/>
+        </ctg:page_alert>
+    </c:if>
 
     <form class="form-login" name="form-login" method="POST" action="controller">
         <div class="form-input-data">
@@ -37,7 +45,7 @@
                 <div class="form-row">
                     <label>
                         <span><fmt:message key="login.label.login"/></span>
-                        <input type="text" name="login" id="login" value="" onblur="validateLogin()" onchange="validateLogin()">
+                        <input type="text" name="user_login" id="login" value="" onblur="validateLogin()" onchange="validateLogin()">
                         <h2 id="login_error"></h2>
                     </label>
                 </div>
@@ -45,7 +53,7 @@
                 <div class="form-row">
                     <label>
                         <span><fmt:message key="login.label.password"/></span>
-                        <input type="password" name="password" id="password" value=""  onblur="validatePassword()" onchange="validatePassword()">
+                        <input type="password" name="user_password" id="password" value=""  onblur="validatePassword()" onchange="validatePassword()">
                         <h2 id="password_error"></h2>
                     </label>
                 </div>
@@ -57,8 +65,8 @@
     </form>
 
             <div class="row-sign-up">
-            <form method="POST" action="controller">
-                <button class="form-sign-up" type="submit" name="path" value="path.page.register">Don't have an account? <strong>Sign up</strong></button>
+            <form method="GET" action="controller">
+                <button class="form-sign-up" type="submit" name="path" value="register_page">Don't have an account? <strong>Sign up</strong></button>
                 <input type="hidden" name="command" value="forward" />
             </form>
             </div>

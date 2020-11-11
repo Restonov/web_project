@@ -1,6 +1,6 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.entity.User;
+import by.restonov.tyrent.model.entity.User;
 
 public class UserRoleChooserTag {
     private String showUserRoleBlock(User user) {

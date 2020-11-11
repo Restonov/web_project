@@ -2,8 +2,10 @@ package by.restonov.tyrent.controller;
 
 import by.restonov.tyrent.controller.command.ActionCommand;
 import by.restonov.tyrent.controller.factory.ActionFactory;
+import by.restonov.tyrent.model.exception.ConnectionPoolException;
 import by.restonov.tyrent.manager.MessageManager;
 import by.restonov.tyrent.manager.PageName;
+import by.restonov.tyrent.model.pool.ConnectionPool;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,8 +40,18 @@ public class Controller extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             page = PageName.INDEX_PAGE;
+            //TODO page 404
             session.setAttribute("nullPage", MessageManager.getProperty("message.nullpage"));
             response.sendRedirect(request.getContextPath() + page);
+        }
+    }
+
+    @Override
+    public void destroy() {
+        try {
+            ConnectionPool.INSTANCE.shutdownPoll();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
         }
     }
 }

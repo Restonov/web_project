@@ -40,6 +40,19 @@
         <param-value>true</param-value>
     </context-param>
 
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <filter>
+        <filter-name>LocaleFilter</filter-name>
+        <filter-class>by.restonov.tyrent.controller.filter.LocaleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LocaleFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/jsp/error/error404.jsp</location>
@@ -54,9 +67,5 @@
         <exception-type>java.lang.RuntimeException</exception-type>
         <location>/WEB-INF/jsp/error/error_runtime.jsp</location>
     </error-page>
-
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
 
 </web-app>

@@ -1,27 +1,29 @@
 function validateFirstName() {
-    const first_name_valid = /^[a-z A-Z]+$/;
+    const first_name_valid = /^[a-z A-Z]{1,20}$/;
     const first_name = document.getElementById("first_name");
+    let firstname_error = document.getElementById("firstname_error");
 
     if(!first_name_valid.test(first_name.value) || first_name.value==='') {
         first_name.focus();
-        document.getElementById("firstname_error").innerHTML="Please, enter your First name (alphabet only)";
+        firstname_error.style.color = "red";
         return false;
     } else {
-        document.getElementById("firstname_error").innerHTML="";
+        firstname_error.style.color = "white";
         return false;
     }
 }
 
 function validateLastName() {
-    const last_name_valid = /^[a-z A-Z]+$/;
+    const last_name_valid = /^[a-z A-Z]{1,20}$/;
     const last_name = document.getElementById("last_name");
+    let lastname_error = document.getElementById("lastname_error");
 
     if(!last_name_valid.test(last_name.value) || last_name.value==='') {
         last_name.focus();
-        document.getElementById("lastname_error").innerHTML="Please, enter your Last name (alphabet only)";
+        lastname_error.style.color = "red";
         return false;
     } else {
-        document.getElementById("lastname_error").innerHTML="";
+        lastname_error.style.color = "white";
         return false;
     }
 }
@@ -29,27 +31,44 @@ function validateLastName() {
 function validateEmail() {
     const email_valid= /^[\w\d.]+@[a-zA-Z.]+\.[A-Za-z]{1,4}$/;
     const email = document.getElementById("email");
+    let email_error = document.getElementById("email_error");
 
     if(!email_valid.test(email.value) || email.value==='') {
         email.focus();
-        document.getElementById("email_error").innerHTML="Please, enter your Email";
+        email_error.style.color = "red";
         return false;
     } else {
-        document.getElementById("email_error").innerHTML="";
+        email_error.style.color = "white";
+        return false;
+    }
+}
+
+function validatePhone() {
+    const phone_valid= /^[\d]{12}$/;
+    const phone = document.getElementById("phone");
+    let phone_error = document.getElementById("phone_error");
+
+    if(!phone_valid.test(phone.value) || phone.value==='') {
+        phone.focus();
+        phone_error.style.color = "red";
+        return false;
+    } else {
+        phone_error.style.color = "white";
         return false;
     }
 }
 
 function validateLogin() {
-    const login_valid = /^[a-z A-Z]+$/;
+    const login_valid = /^[a-z A-Z]{1,20}$/;
     const login = document.getElementById("login");
+    let login_error = document.getElementById("login_error");
 
     if(!login_valid.test(login.value) || login.value==='') {
         login.focus();
-        document.getElementById("login_error").innerHTML="Please, enter valid Login (alphabet only)";
+        login_error.style.color = "red";
         return false;
     } else {
-        document.getElementById("login_error").innerHTML="";
+        login_error.style.color = "white";
         return false;
     }
 }
@@ -57,13 +76,14 @@ function validateLogin() {
 function validatePassword() {
     const password_valid=/^[A-Z a-z0-9!@#$%_&-*()<>]{6,12}$/;
     const password = document.getElementById("password");
+    let password_error = document.getElementById("password_error");
 
     if(!password_valid.test(password.value) || password.value==='') {
         password.focus();
-        document.getElementById("password_error").innerHTML="Password must Be 6 to 12 and allowed !@#$%&*()<> character";
+        password_error.style.color = "red";
         return false;
     } else {
-        document.getElementById("password_error").innerHTML="";
+        password_error.style.color = "white";
         return false;
     }
 }

@@ -6,31 +6,28 @@ public class ParameterName {
     public static final String COMMAND = "command";
     public static final String PAGE_LANGUAGE = "page_language";
 
-    //common
-    public static final String STATE = "state";
-
     //user
     public static final String USER_ID = "user_id";
-    public static final String FIRST_NAME = "first_name";
-    public static final String LAST_NAME = "last_name";
-    public static final String LOGIN = "login";
-    public static final String PASSWORD = "password";
-    public static final String EMAIL = "email";
-    public static final String ROLE_ID = "role_id";
-    public static final String ORDER_ID_LIST = "order_id_list";
+    public static final String USER_FIRST_NAME = "user_first_name";
+    public static final String USER_LAST_NAME = "user_last_name";
+    public static final String USER_LOGIN = "user_login";
+    public static final String USER_PASSWORD = "user_password";
+    public static final String USER_EMAIL = "user_email";
+    public static final String USER_PHONE = "user_phone";
+    public static final String USER_STATE = "user_state";
+    public static final String USER_ROLE = "user_role";
+    public static final String USER_DATA = "data";
 
     //car
-    //TODO name -> car_name in DB and etc.
     public static final String CAR_ID = "car_id";
     public static final String CAR_STATE = "car_state";
-    public static final String NAME = "name";
-    public static final String COST = "cost";
-    public static final String TYPE = "type";
-    public static final String DESCRIPTION_ENG = "description_eng";
-    public static final String DESCRIPTION_RUS = "description_rus";
-    public static final String IMAGE_BACKGROUND = "image_background";
-    public static final String IMAGE_MINI = "image_mini";
-    public static final String IMAGE_CABIN = "image_cabin";
+    public static final String CAR_NAME = "car_name";
+    public static final String CAR_COST = "car_cost";
+    public static final String DESCRIPTION_ENG = "car_description_eng";
+    public static final String DESCRIPTION_RUS = "car_description_rus";
+    public static final String IMAGE_BIG = "car_image_big";
+    public static final String IMAGE_MINI = "car_image_mini";
+    public static final String IMAGE_CABIN = "car_image_cabin";
     public static final String CHOSEN_CAR_ID = "chosen_car_id";
 
 
@@ -41,7 +38,8 @@ public class ParameterName {
 
     //pages
     public static final String LOGIN_PAGE ="login_page";
-    public static final String USER_PROFILE_PAGE = "user_profile";
+    public static final String REGISTER_PAGE ="register_page";
+    public static final String USER_PROFILE_PAGE = "user_profile_page";
 
     //email
     public static final String SEND_TO_EMAIL = "maxplyushko@gmail.com";

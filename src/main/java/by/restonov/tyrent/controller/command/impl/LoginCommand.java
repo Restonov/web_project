@@ -1,12 +1,12 @@
 package by.restonov.tyrent.controller.command.impl;
 
 import by.restonov.tyrent.controller.command.ActionCommand;
-import by.restonov.tyrent.entity.User;
+import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageName;
 import by.restonov.tyrent.manager.ParameterName;
 import by.restonov.tyrent.model.service.UserService;
-import by.restonov.tyrent.util.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,27 +22,31 @@ public class LoginCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         HttpSession session = request.getSession();
-        String login = request.getParameter(ParameterName.LOGIN);
-        String password = request.getParameter(ParameterName.PASSWORD);
+        String login = request.getParameter(ParameterName.USER_LOGIN);
+        String password = request.getParameter(ParameterName.USER_PASSWORD);
         Optional<User> optionalUser;
-        //TODO all logic could be in Service
-        if (DataValidator.validateLatinText(login) && DataValidator.validatePassword(password)) {
-            if (service.checkUserLoginAndPassword(login, password)) {
-                optionalUser = service.findUserByLogin(login);
-                if (optionalUser.isPresent()) {
-                    User user = optionalUser.get();
-                    user.setOnlineState(true);
-                    session.setAttribute(AttributeName.USER, user);
-                    if (user.receiveRoleId(user.getRole()) > User.CLIENT_ROLE_ID) {
-                        session.setAttribute(AttributeName.ACTIVATE_ADMIN_PANEL, true);
+        if (service.validateUser(login, password)) {
+            try {
+                if (service.checkUserLoginAndPassword(login, password)) {
+                    optionalUser = service.findUserByLogin(login);
+                    if (optionalUser.isPresent()) {
+                        User user = optionalUser.get();
+                        user.setOnline(true);
+                        session.setAttribute(AttributeName.USER, user);
+                        //TODO move admin panel to filter
+                        session.setAttribute(AttributeName.ACTIVATE_ADMIN_PANEL, user.getRole() == User.Role.ADMINISTRATOR);
+                        request.setAttribute(AttributeName.WELCOME_MESSAGE, true);
+                        page = PageName.MAIN_PAGE;
+                    } else {
+                        request.setAttribute(AttributeName.LOGIN_PASSWORD_ERROR, true);
+                        page = PageName.LOGIN_PAGE;
                     }
-                    page = PageName.MAIN_PAGE;
                 } else {
-                    logger.warn("Incorrect login and password");
                     request.setAttribute(AttributeName.LOGIN_PASSWORD_ERROR, true);
                     page = PageName.LOGIN_PAGE;
                 }
-            } else {
+            } catch (ServiceException e) {
+                logger.error("Error while checking user login and password", e);
                 request.setAttribute(AttributeName.LOGIN_PASSWORD_ERROR, true);
                 page = PageName.LOGIN_PAGE;
             }

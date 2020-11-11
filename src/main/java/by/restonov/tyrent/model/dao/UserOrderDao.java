@@ -1,9 +1,10 @@
 package by.restonov.tyrent.model.dao;
 
-import by.restonov.tyrent.exception.DaoException;
+import by.restonov.tyrent.model.exception.DaoException;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserOrderDao {
-    Map<String, Object> findOrderInfo(int orderId) throws DaoException;
+    List<Map<String, Object>> findOrderListByUserId(long userId) throws DaoException;
 }

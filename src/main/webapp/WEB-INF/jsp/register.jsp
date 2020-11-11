@@ -18,27 +18,27 @@
      <div class="form-register-with-email">
                 <div class="form-white-background">
                     <div class="form-title-row">
-                        <h1>Register</h1>
+                        <h1 id="headline"><fmt:message key="text.registration.form"/></h1>
                     </div>
 				   
 					<p style="color:red">
                         <c:if test="${data_validation_error}">
                         <span>
-                        Invalid registration data
+                        <fmt:message key="alert.invalid"/>
                         </span>
                         </c:if>
 					</p>
                     <p style="color:red">
                         <c:if test="${user_already_exists}">
                         <span>
-                        User with such data already existing
+                        <fmt:message key="alert.user"/>
                         </span>
                         </c:if>
                     </p>
                     <p style="color:red">
                         <c:if test="${registration_error}">
                         <span>
-                        Registration error
+                        <fmt:message key="alert.registration.error"/>
                         </span>
                         </c:if>
                     </p>
@@ -46,40 +46,58 @@
 				   </br>
                     <div class="form-row">
                         <label>
-                            <span>First name</span>
-                            <input type="text" name="first_name" id="first_name" placeholder="enter first name" onblur="validateFirstName()" onchange="validateFirstName()">
-                            <h2 id="firstname_error"></h2>
+                            <span><fmt:message key="text.firstname"/><a style="color: red">*</a></span>
+                            <input type="text" name="user_first_name" id="first_name" placeholder="enter first name" onblur="validateFirstName()" onchange="validateFirstName()">
+                            <h2 id="firstname_error" style="color: white">
+                                <fmt:message key="hint.firstname.error"/>
+                            </h2>
                         </label>
                     </div>
 					<div class="form-row">
                         <label>
-                            <span>Last name</span>
-                            <input type="text" name="last_name" id="last_name" placeholder="enter last name" onblur="validateLastName()" onchange="validateLastName()">
-                            <h2 id="lastname_error"></h2>
+                            <span><fmt:message key="text.lastname"/><a style="color: red">*</a></span>
+                            <input type="text" name="user_last_name" id="last_name" placeholder="enter last name" onblur="validateLastName()" onchange="validateLastName()">
+                            <h2 id="lastname_error" style="color: white">
+                                <fmt:message key="hint.lastname.error"/>
+                            </h2>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            <span><fmt:message key="text.email"/><a style="color: red">*</a></span>
+                            <input type="text" name="user_email" id="email" placeholder="enter email" onblur="validateEmail()" onchange="validateEmail()">
+                            <h2 id="email_error" style="color: white">
+                                <fmt:message key="hint.email.error"/>
+                            </h2>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            <span><fmt:message key="text.phone"/><a style="color: red">*</a></span>
+                            <input type="text" name="user_phone" id="phone" placeholder="enter phone number" onblur="validatePhone()" onchange="validatePhone()">
+                            <h2 id="phone_error" style="color: white">
+                                <fmt:message key="hint.phone.error"/>
+                            </h2>
                         </label>
                     </div>
 
                     <div class="form-row">
                         <label>
-                            <span>Email</span>
-                            <input type="text" name="email" id="email" placeholder="enter email" onblur="validateEmail()" onchange="validateEmail()">
-                            <h2 id="email_error"></h2>
+                            <span><fmt:message key="text.login"/><a style="color: red">*</a></span>
+                            <input type="text" name="user_login" id="login" placeholder="enter login"  onblur="validateLogin()" onchange="validateLogin()">
+                            <h2 id="login_error" style="color: white">
+                                <fmt:message key="hint.login.error"/>
+                            </h2>
                         </label>
                     </div>
 
                     <div class="form-row">
                         <label>
-                            <span>Login</span>
-                            <input type="text" name="login" id="login" placeholder="enter login"  onblur="validateLogin()" onchange="validateLogin()">
-                            <h2 id="login_error"></h2>
-                        </label>
-                    </div>
-
-                    <div class="form-row">
-                        <label>
-                            <span>Password</span>
-                            <input type="password" name="password" id="password" placeholder="enter password"  onblur="validatePassword()" onchange="validatePassword()">
-                            <h2 id="password_error"></h2>
+                            <span><fmt:message key="text.password"/><a style="color: red">*</a></span>
+                            <input type="password" name="user_password" id="password" placeholder="enter password"  onblur="validatePassword()" onchange="validatePassword()">
+                            <h2 id="password_error" style="color: white">
+                                <fmt:message key="hint.password.error"/>
+                            </h2>
                         </label>
                     </div>
 
@@ -92,9 +110,9 @@
         </form>
 
         <div class="row-sign-up">
-            <form method="POST" action="controller">
-                <button class="form-sign-up" type="submit" name="path" value="path.page.login">Already have an account?<strong>Login here</strong></button>
-                <input type="hidden" name="command" value="redirect" />
+            <form method="GET" action="controller">
+                <button class="form-sign-up" type="submit" name="path" value="login_page"><fmt:message key="button.signup"/> </button>
+                <input type="hidden" name="command" value="forward" />
             </form>
         </div>
     </div>

@@ -11,11 +11,13 @@ public class AttributeName {
     public static final  String USER_EXISTS_ERROR = "user_already_exists";
     public static final  String DATA_VALIDATION_ERROR = "data_validation_error";
     public static final  String REGISTRATION_ERROR = "registration_error";
+    public static final  String WELCOME_MESSAGE = "welcome_message";
     public static final  String CAR_NOT_AVAILABLE_ALERT = "car_not_available_alert";
-    public static final  String SUCCESSFUL_ORDER = "successful_order";
+    public static final  String SUCCESSFUL_ORDER_MESSAGE = "successful_order";
+    public static final  String USER_ACTIVATED_MESSAGE = "user_activated";
 
+    //admin and operator
     public static final String ACTIVATE_ADMIN_PANEL = "activate_admin_panel";
-
 
     //Car
     public static final String CAR = "car";

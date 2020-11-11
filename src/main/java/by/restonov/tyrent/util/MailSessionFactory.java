@@ -7,6 +7,7 @@ import javax.mail.Session;
 import java.util.Properties;
 
 class MailSessionFactory {
+    //TODO const
     private String userName = ConfigurationManager.getProperty("mail.user.name");
     private String userPassword = ConfigurationManager.getProperty("mail.user.password");
     private String smtpPort = ConfigurationManager.getProperty("mail.smtp.port");

@@ -1,7 +1,7 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.entity.UserOrder;
-import by.restonov.tyrent.exception.ServiceException;
+import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.UserOrderService;
 
 import javax.servlet.jsp.JspWriter;
@@ -14,7 +14,7 @@ public class AdminOrderListTag extends TagSupport {
     @Override
     public int doStartTag() {
         UserOrderService service = new UserOrderService();
-        List<UserOrder> orderList = null;
+        List<UserOrder> orderList;
         try {
             orderList = service.findOrderList();
             printTable(orderList);
@@ -28,15 +28,16 @@ public class AdminOrderListTag extends TagSupport {
     public int doEndTag() {
         return EVAL_PAGE;
     }
-    //TODO JSP localization
+
     private void printTable(List<UserOrder> orderList) {
         StringBuilder table = new StringBuilder();
         for (UserOrder order : orderList) {
             table.append("<tr>")
                     .append("<th scope=\"row\">").append(order.getOrderId()).append("</th>")
                     .append("<td>").append(order.getCarId()).append("</td>")
+                    .append("<td>").append(order.getUserId()).append("</td>")
                     .append("<td>").append(order.getCreationDateTime()).append("</td>")
-                    .append("<td>").append(order.getState()).append("</td>")
+                    .append("<td>").append(showOrderStateChooser(order)).append("</td>")
                     .append("</tr>");
         }
         JspWriter out = pageContext.getOut();
@@ -45,5 +46,22 @@ public class AdminOrderListTag extends TagSupport {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String showOrderStateChooser(UserOrder order) {
+        StringBuilder orderState = new StringBuilder();
+        orderState.append("<form action=\"controller\" method=\"post\">")
+                .append("<p style=\"float: left\">")
+                .append("<select name=\"order_state\">")
+                .append("<option hidden>").append(order.getState().toString().toLowerCase()).append("</option>")
+                .append("<option value=PROCESSED>").append(UserOrder.State.PROCESSED.toString().toLowerCase()).append("</option>")
+                .append("<option value=CANCELED>").append(UserOrder.State.CANCELED.toString().toLowerCase()).append("</option>")
+                .append("<option value=COMPLETED>").append(UserOrder.State.COMPLETED.toString().toLowerCase()).append("</option>")
+                .append("</select>")
+                .append("<input type=\"hidden\" name=\"command\" value=\"change_order_state\" />")
+                .append("<input type=\"hidden\" name=\"order_id\" value=\"").append(order.getOrderId()).append("\" />")
+                .append("<input type=\"submit\" value=\"OK\">")
+                .append(" </form>");
+        return orderState.toString();
     }
 }

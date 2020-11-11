@@ -1,6 +1,6 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.entity.User;
+import by.restonov.tyrent.model.entity.User;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageContentManager;
 
@@ -16,10 +16,9 @@ public class LogInButtonTag extends TagSupport {
     public int doStartTag() throws JspException {
         User user = (User) pageContext.getSession().getAttribute(AttributeName.USER);
         String language = (String) pageContext.getSession().getAttribute(AttributeName.LOCALE);
-        String logout = PageContentManager.findProperty("button.label.logout", language);
-        String login = PageContentManager.findProperty("button.label.login", language);
 
-        if (user != null) {
+        if (user != null && language != null) {
+            String logout = PageContentManager.findProperty("button.label.logout", language);
             String button = "<input class=\"btn btn-primary\" type=\"submit\" value=\"" + logout + "\"/>";
             String hidden = "<input type=\"hidden\" name=\"command\" value=\"logout\"/>";
             try {
@@ -30,6 +29,7 @@ public class LogInButtonTag extends TagSupport {
                 throw new JspException(e.getMessage());
             }
         } else {
+            String login = PageContentManager.findProperty("button.label.login", language);
             String button = "<button class=\"btn btn-primary\" type=\"submit\" name=\"path\" value=\"login_page\">" + login + "</button>";
             String hidden = "<input type=\"hidden\" name=\"command\" value=\"forward\"/>";
             try {

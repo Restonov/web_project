@@ -9,9 +9,8 @@
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
-<c:import url="/WEB-INF/jsp/admin/admin_panel.jsp" charEncoding="utf-8"/>
 
-<div style="height: 500px">
+<div style="margin-bottom: 30px">
 <table class="table" style="margin-top: 30px">
     <thead>
     <tr>
@@ -20,6 +19,9 @@
         <th>Last Name</th>
         <th>Username</th>
         <th>Email</th>
+        <th>Phone number</th>
+        <th>User Role</th>
+        <th>State</th>
         <th></th>
     </tr>
     </thead>

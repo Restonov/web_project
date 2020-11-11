@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="demoservlet" />
+        <module name="tyrent" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="demoservlet" target="14" />
+      <module name="tyrent" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>

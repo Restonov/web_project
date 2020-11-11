@@ -9,14 +9,14 @@
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
-<c:import url="/WEB-INF/jsp/admin/admin_panel.jsp" charEncoding="utf-8"/>
 
-<div style="height: 500px">
+<div style="margin-bottom: 30px">
 <table class="table" style="margin-top: 30px">
     <thead>
     <tr>
-        <th>order_id</th>
-        <th>car_id</th>
+        <th>Order_id</th>
+        <th>Car_id</th>
+        <th>User_id</th>
         <th>Creation date</th>
         <th>Current state</th>
     </tr>

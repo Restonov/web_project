@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 public class ActionFactory {
-    static Logger logger = LogManager.getLogger();
+    //TODO do something in catch block, remove MessageManager
 
     public ActionCommand defineCommand(HttpServletRequest request) {
         ActionCommand command = new EmptyCommand();
@@ -23,7 +23,6 @@ public class ActionFactory {
             CommandEnum commandEnum = CommandEnum.valueOf(action.toUpperCase());
             command = commandEnum.getCurrentCommand();
         } catch (IllegalArgumentException e) {
-            logger.info("Wrong action was performed", e);
             request.setAttribute("wrongAction", action + MessageManager.getProperty("message.wrongaction"));
         }
         return command;

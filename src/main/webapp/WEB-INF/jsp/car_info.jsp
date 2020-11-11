@@ -5,12 +5,12 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="car.text.headline"/></title>
 </head>
 <body>
     <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
-    <jsp:useBean id="car" scope="request" type="by.restonov.tyrent.entity.Car"/>
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background: url(${pageContext.request.contextPath}${car.imageBackground}) no-repeat">
+    <jsp:useBean id="car" scope="request" type="by.restonov.tyrent.model.entity.Car"/>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background-size: cover; background: url(${pageContext.request.contextPath}${car.imageBig}) no-repeat center;">
         <div class="col-md-5 p-lg-5 mx-auto my-5" style="left: -420px">
         <h1 class="display-4 font-weight-normal" style="left: auto; position: relative; right: 0; float: none; text-align: center; margin-right: auto;">${car.name}<br></h1>
             <p class="lead font-weight-normal" style="position: relative; right: 0;"><fmt:message key="text.offer"/>${car.cost} <fmt:message key="text.cost"/><br></p>

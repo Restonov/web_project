@@ -1,6 +1,6 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.entity.User;
+import by.restonov.tyrent.model.entity.User;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageContentManager;
 
@@ -26,7 +26,7 @@ public class CurrentUserTag extends TagSupport{
                 userInfo.append("<input class=\"nav-link\" type=\"submit\" value=\"")
                 .append(currentUser).append(userLogin).append(" (").append(userRole).append(")")
                 .append("\" style=\"outline: 0; border: 0; background: 0; margin-top: 20px; color: white\">")
-                .append("<input type=\"hidden\" name=\"path\" value=\"user_profile\"/>")
+                .append("<input type=\"hidden\" name=\"path\" value=\"user_profile_page\"/>")
                 .append("<input type=\"hidden\" name=\"command\" value=\"forward\" /></form>");
                 try {
                     JspWriter out = pageContext.getOut();

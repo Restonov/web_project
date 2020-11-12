@@ -5,9 +5,26 @@ import by.restonov.tyrent.util.UserOrderIdGenerator;
 
 import java.time.LocalDateTime;
 
+/**
+ * User builder
+ */
 public enum UserOrderBuilder {
+
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
+    /**
+     * Build new order
+     * attach user_id, car_id
+     * new generated order_id
+     * and current {@link LocalDateTime}
+     *
+     * @param userId User id
+     * @param carId Car id
+     * @return Order instance
+     */
     public UserOrder build(long userId, long carId) {
         UserOrder order = new UserOrder();
         LocalDateTime dateTime = LocalDateTime.now();

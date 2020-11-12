@@ -2,6 +2,10 @@ package by.restonov.tyrent.model.entity;
 
 import java.io.Serializable;
 
+
+/**
+ * Class of User type
+ */
 public class User implements Serializable {
     private long userId;
     private String firstName;
@@ -13,89 +17,196 @@ public class User implements Serializable {
     private State state;
     private boolean isOnline;
 
+    /**
+     * User roles according to DB
+     */
     public enum Role {
         GUEST(), CLIENT(), ADMINISTRATOR()
     }
 
+    /**
+     * User states according to DB
+     */
     public enum State {
         ACTIVATED(), NOT_ACTIVATED(), BLOCKED()
     }
 
+    /**
+     * Default constructor
+     * @see #User(String)
+     */
     public User(){
     }
 
+    /**
+     * Instantiates a new User with
+     * login assign
+     *
+     * @param login the login
+     * @see #User()
+     */
     public User(String login) {
         this.login = login;
     }
 
+    /**
+     * Gets phone
+     *
+     * @return the phone
+     */
     public String getPhone() {
         return phone;
     }
 
+    /**
+     * Sets phone
+     *
+     * @param phone the phone
+     */
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    /**
+     * Gets state
+     *
+     * @return the state
+     */
     public State getState() {
         return state;
     }
 
+    /**
+     * Sets state
+     *
+     * @param state the state
+     */
     public void setState(State state) {
         this.state = state;
     }
 
+    /**
+     * Gets role
+     *
+     * @return the role
+     */
     public Role getRole() {
         return role;
     }
 
+    /**
+     * Sets role
+     *
+     * @param userRole the user role
+     */
     public void setRole(Role userRole) {
         this.role = userRole;
     }
 
+    /**
+     * Gets online state
+     *
+     * @return online state
+     */
     public boolean getOnline() {
         return isOnline;
     }
 
+    /**
+     * Sets online state
+     *
+     * @param online online state
+     */
     public void setOnline(boolean online) {
         this.isOnline = online;
     }
 
+    /**
+     * Gets first name
+     *
+     * @return the first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Sets first name
+     *
+     * @param firstName the first name
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Gets last name
+     *
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Sets last name
+     *
+     * @param lastName the last name
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Gets login
+     *
+     * @return the login
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Sets login
+     *
+     * @param login the login
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * Gets id
+     *
+     * @return the id
+     */
     public long getId() {
         return userId;
     }
 
+    /**
+     * Sets id
+     *
+     * @param id the id
+     */
     public void setId(long id) {
         this.userId = id;
     }
 
+    /**
+     * Gets email
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets email
+     *
+     * @param email the email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
@@ -123,7 +234,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User = ");
-        sb.append(firstName).append(", ").append(lastName);
+        sb.append(firstName).append(" ").append(lastName);
         return sb.toString();
     }
 }

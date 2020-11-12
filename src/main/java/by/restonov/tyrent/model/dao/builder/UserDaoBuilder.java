@@ -5,11 +5,23 @@ import by.restonov.tyrent.manager.ParameterName;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
+/**
+ * User builder
+ */
 public enum UserDaoBuilder {
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
+    /**
+     * Build User from ResultSet data
+     *
+     * @param set ResultSet
+     * @return User instance
+     * @throws SQLException DB access error
+     */
     public User build(ResultSet set) throws SQLException {
         String firstName = set.getString(ParameterName.USER_FIRST_NAME);
         String lastName = set.getString(ParameterName.USER_LAST_NAME);

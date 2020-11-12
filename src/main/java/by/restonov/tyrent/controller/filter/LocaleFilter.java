@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Filter that sets default
+ * ENG locale to the app
+ */
 @WebFilter
 public class LocaleFilter implements Filter {
 

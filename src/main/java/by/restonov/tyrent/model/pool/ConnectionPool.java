@@ -8,16 +8,25 @@ import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * Pool of connections for DB
+ */
 public enum ConnectionPool {
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
     private static final Logger logger = LogManager.getLogger();
-
     private BlockingQueue<ProxyConnection> freeConnections;
     private BlockingQueue<ProxyConnection> activeConnections;
     private ConnectionCreator connectionCreator;
     public static final int MAX_POOL_SIZE = 10;
 
+    /**
+     * ConnectionPool initialization
+     */
+    //TODO add additional info about LinkedBlockingQueue
     ConnectionPool() {
         freeConnections = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
         activeConnections = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
@@ -28,7 +37,12 @@ public enum ConnectionPool {
         }
     }
 
-    public Connection receiveConnection() {
+    /**
+     * Provide connection from the pool
+     *
+     * @return Proxy connection
+     */
+    public Connection provideConnection() {
             ProxyConnection connection = null;
             try {
                 connection = freeConnections.take();
@@ -40,7 +54,12 @@ public enum ConnectionPool {
             return connection;
         }
 
-        public void releaseConnection(Connection connection) {
+    /**
+     * Take back connection to the pool
+     *
+     * @param connection the connection
+     */
+    public void takeBackConnection(Connection connection) {
             if (connection != null) {
                 if (connection instanceof ProxyConnection && activeConnections.remove(connection)) {
                     try {
@@ -57,7 +76,10 @@ public enum ConnectionPool {
             }
         }
 
-        public void shutdownPoll() {
+    /**
+     * Shutdown pool when application stops
+     */
+    public void shutdown() {
             for (int i = 0; i < freeConnections.size(); i++) {
                 try {
                     ProxyConnection connection = freeConnections.take();

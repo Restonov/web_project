@@ -1,8 +1,22 @@
 package by.restonov.tyrent.model.service.builder;
 
+/**
+ * Car builder
+ */
 public enum CarBuilder {
+
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
+    /**
+     * Build user from User data
+     * that we get from jsp form
+     *
+     * @param data Map of Car data
+     * @return Car instance
+     */
     //car creation from admin panel
 //    public Car createCarFromMap(Map<String, String> data){
 //        int carId = Integer.parseInt(data.get(ParameterName.CAR_ID));

@@ -15,6 +15,12 @@ import java.io.IOException;
 import java.util.EnumMap;
 import java.util.List;
 
+/**
+ * Filter that checks
+ * if performed command corresponds to
+ * User role
+ */
+//TODO complete
 //@WebFilter
 public class SecurityFilter implements Filter {
     private static final EnumMap<CommandEnum, List<User.Role>> commandPermitions = new EnumMap<>(CommandEnum.class);

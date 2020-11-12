@@ -5,9 +5,24 @@ import by.restonov.tyrent.model.entity.User;
 
 import java.util.Map;
 
+
+/**
+ * User builder
+ */
 public enum UserBuilder {
+
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
+    /**
+     * Build user from User data
+     * that we get from jsp form
+     *
+     * @param data Map of User data
+     * @return User instance
+     */
     public User build(Map<String, String> data){
         String firstName = data.get(ParameterName.USER_FIRST_NAME);
         String lastName = data.get(ParameterName.USER_LAST_NAME);

@@ -9,6 +9,9 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
+/**
+ * Adaptive button "BOOK CAR" in the Car info page
+ */
 @SuppressWarnings("serial")
 public class BookCarButtonTag extends TagSupport {
 

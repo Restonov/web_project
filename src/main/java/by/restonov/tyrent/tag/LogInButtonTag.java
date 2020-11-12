@@ -9,6 +9,11 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
+/**
+ * Adaptive button
+ * When User is online -> shows LOG OUT
+ * When User is offline -> shows LOG IN
+ */
 @SuppressWarnings("serial")
 public class LogInButtonTag extends TagSupport {
 

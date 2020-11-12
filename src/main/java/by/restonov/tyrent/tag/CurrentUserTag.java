@@ -10,6 +10,10 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
+/**
+ * Current User profile button that shows
+ * User login and Role
+ */
 @SuppressWarnings("serial")
 public class CurrentUserTag extends TagSupport{
 

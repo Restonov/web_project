@@ -9,6 +9,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * List of the Users for Admin panel
+ */
 public class AdminUserListTag extends TagSupport {
 
     @Override

@@ -1,8 +1,14 @@
 package by.restonov.tyrent.model.exception;
 
+/**
+ * Exception, that throws by Dao layer
+ */
 public class DaoException extends Exception{
-    public DaoException() {
-    }
+
+    /**
+     * default constructors
+     */
+    public DaoException() { }
 
     public DaoException(String message) {
         super(message);

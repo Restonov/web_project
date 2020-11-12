@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The type User dao.
+ * DAO Interaction with DB "users" table
  */
 public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     private static final Logger logger = LogManager.getLogger();
@@ -30,6 +30,7 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     private static final String UPDATE_PASSWORD = "UPDATE users SET user_password = ? WHERE user_login = ?";
     private static final String UPDATE_USER = "UPDATE users SET user_first_name = ?, user_last_name = ?, user_login = ?, user_email = ?, user_phone = ?, user_state = ?::user_state, user_role = ?::user_role WHERE user_id = ?";
 
+    @Override
     public Optional<User> findByName(String name) {
         throw new UnsupportedOperationException();
     }

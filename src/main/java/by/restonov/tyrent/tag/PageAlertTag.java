@@ -4,6 +4,9 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import java.io.IOException;
 
+/**
+ * Shows related alert on current page
+ */
 public class PageAlertTag extends BodyTagSupport {
     private String type;
     private boolean hide;

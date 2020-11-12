@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * DAO Interaction with DB "cars" table
+ */
 public class CarDaoImpl extends AbstractDao<Long, Car> implements CarDao {
     private static final Logger logger = LogManager.getLogger();
     private static final String SELECT_ALL_CARS= "SELECT car_id, car_name, car_cost, car_description_eng, car_description_rus, car_image_big, car_image_mini, car_image_cabin, car_state FROM cars";

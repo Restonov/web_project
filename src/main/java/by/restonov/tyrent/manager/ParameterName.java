@@ -1,12 +1,23 @@
 package by.restonov.tyrent.manager;
 
+/**
+ * Names of application parameters
+ */
 public class ParameterName {
-    //page content
+
+    /**
+     * Page content parameters
+     */
     public static final String PATH = "path";
     public static final String COMMAND = "command";
     public static final String PAGE_LANGUAGE = "page_language";
+    public static final String LOGIN_PAGE ="login_page";
+    public static final String REGISTER_PAGE ="register_page";
+    public static final String USER_PROFILE_PAGE = "user_profile_page";
 
-    //user
+    /**
+     * User parameters
+     */
     public static final String USER_ID = "user_id";
     public static final String USER_FIRST_NAME = "user_first_name";
     public static final String USER_LAST_NAME = "user_last_name";
@@ -18,7 +29,9 @@ public class ParameterName {
     public static final String USER_ROLE = "user_role";
     public static final String USER_DATA = "data";
 
-    //car
+    /**
+     * Car parameters
+     */
     public static final String CAR_ID = "car_id";
     public static final String CAR_STATE = "car_state";
     public static final String CAR_NAME = "car_name";
@@ -30,22 +43,23 @@ public class ParameterName {
     public static final String IMAGE_CABIN = "car_image_cabin";
     public static final String CHOSEN_CAR_ID = "chosen_car_id";
 
-
-    //order
+    /**
+     * User order parameters
+     */
     public static final String ORDER_ID = "order_id";
     public static final String ORDER_STATE = "order_state";
     public static final String ORDER_TIMESTAMP = "order_timestamp";
 
-    //pages
-    public static final String LOGIN_PAGE ="login_page";
-    public static final String REGISTER_PAGE ="register_page";
-    public static final String USER_PROFILE_PAGE = "user_profile_page";
-
-    //email
+    /**
+     * Email parameters
+     */
     public static final String SEND_TO_EMAIL = "maxplyushko@gmail.com";
     public static final String MAIL_SUBJECT = "TyRent user verification";
-    public static final String MAIL_BODY = "To complete registration please tap to the link below";
+    public static final String MAIL_BODY = "To complete registration please tap to the link";
 
+    /**
+     * Private constructor to prevent class object creation
+     */
     private ParameterName() {
     }
 }

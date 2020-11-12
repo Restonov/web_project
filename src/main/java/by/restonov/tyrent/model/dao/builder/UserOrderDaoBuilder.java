@@ -2,7 +2,6 @@ package by.restonov.tyrent.model.dao.builder;
 
 import by.restonov.tyrent.model.entity.UserOrder;
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.util.UserOrderIdGenerator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,9 +9,22 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * User order builder
+ */
 public enum UserOrderDaoBuilder {
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
+    /**
+     * Build User order from ResultSet data
+     *
+     * @param set ResultSet
+     * @return Order instance
+     * @throws SQLException DB access error
+     */
     public UserOrder build(ResultSet set) throws SQLException {
         long id = set.getLong(ParameterName.ORDER_ID);
         long carId = set.getLong(ParameterName.CAR_ID);
@@ -28,6 +40,9 @@ public enum UserOrderDaoBuilder {
         return order;
     }
 
+    /**
+     *
+     */
     //TODO create extended order with these fields
     public Map<String, Object> buildMap(ResultSet set) throws SQLException {
         Map<String, Object> orderInfo = new HashMap<>();

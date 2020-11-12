@@ -22,6 +22,7 @@ import java.util.Optional;
 /**
  * Controller - the main application servlet
  * that processing all requests to the server
+ * and forms responses
  */
 @WebServlet(name="Controller", urlPatterns = {"/controller", "/login", "/register", "/main"})
 public class Controller extends HttpServlet {
@@ -58,9 +59,10 @@ public class Controller extends HttpServlet {
     }
 
     /**
-     * Process received request by
-     * delegating definition of the command to the {@link ActionFactory}
-     * if command is not in the {@link CommandEnum} redirect User to the 404 page
+     * Process receiving request and
+     * delegates definition of the command to the {@link ActionFactory}
+     * if {@link CommandEnum} contains command -> forward User to result page
+     * otherwise redirect User to the 404 page
      *
      * @param request - HttpServletRequest
      * @param response - HttpServletResponse
@@ -87,7 +89,7 @@ public class Controller extends HttpServlet {
     @Override
     public void destroy() {
         try {
-            ConnectionPool.INSTANCE.shutdownPoll();
+            ConnectionPool.INSTANCE.shutdown();
         } catch (ConnectionPoolException e) {
             e.printStackTrace();
         }

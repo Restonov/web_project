@@ -14,11 +14,25 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * Change order state from admin panel
+ *
+ */
 public class ChangeOrderStateAdminCommand implements ActionCommand {
     private static final Logger logger = LogManager.getLogger();
     private UserOrderService orderService = new UserOrderService();
     private CarService carService = new CarService();
 
+    /**
+     * get "order_state" and "order_id" parameters from selected Order
+     * check if orders exists in DB
+     * get "car_id" from Order
+     * change states of Car and Order according to selected parameter
+     * and forward to user profile page
+     *
+     * @param request - HttpServletRequest
+     * @return result page
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String orderStateParam = request.getParameter(ParameterName.ORDER_STATE);

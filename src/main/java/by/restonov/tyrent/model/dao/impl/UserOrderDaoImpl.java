@@ -11,6 +11,9 @@ import org.apache.logging.log4j.Logger;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * DAO Interaction with DB "orders" table
+ */
 public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements UserOrderDao {
     private static final Logger logger = LogManager.getLogger();
     private static final String INSERT_NEW_ORDER = "INSERT INTO orders (order_id, car_id, user_id, order_timestamp, order_state) VALUES (?, ?, ?, ?, ?::order_state)";

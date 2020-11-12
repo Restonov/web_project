@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ * Class of User order type
+ */
 public class UserOrder {
     private long orderId;
     private long carId;
@@ -14,52 +18,111 @@ public class UserOrder {
     private String userName;
     private BigDecimal carCost;
 
+    /**
+     * Order states according to DB
+     */
     public enum State {
         PROCESSED(), CANCELED(), COMPLETED()
     }
 
+    /**
+     * Convert LocalDateTime to
+     * more clear format
+     *
+     * @return formatted Date and time
+     */
     public String showCreationDateTime() {
         LocalDateTime dateTime = getCreationDateTime();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return dateTime.format(formatter);
     }
 
+    /**
+     * Gets user id
+     *
+     * @return the user id
+     */
     public long getUserId() {
         return userId;
     }
 
+    /**
+     * Sets user id
+     *
+     * @param userId the user id
+     */
     public void setUserId(long userId) {
         this.userId = userId;
     }
 
+    /**
+     * Gets creation date time
+     *
+     * @return the creation date time
+     */
     public LocalDateTime getCreationDateTime() {
         return creationDateTime;
     }
 
+    /**
+     * Sets creation date time
+     *
+     * @param creationDateTime the creation date time
+     */
     public void setCreationDateTime(LocalDateTime creationDateTime) {
         this.creationDateTime = creationDateTime;
     }
 
+    /**
+     * Gets state
+     *
+     * @return the state
+     */
     public State getState() {
         return state;
     }
 
+    /**
+     * Sets state
+     *
+     * @param state the state
+     */
     public void setState(State state) {
         this.state = state;
     }
 
+    /**
+     * Gets order id
+     *
+     * @return the order id
+     */
     public long getOrderId() {
         return orderId;
     }
 
+    /**
+     * Sets order id
+     *
+     * @param orderId the order id
+     */
     public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 
+    /**
+     * Gets car id
+     *
+     * @return the car id
+     */
     public long getCarId() {
         return carId;
     }
 
+    /**
+     * Sets car id
+     *
+     * @param carId the car id
+     */
     public void setCarId(long carId) {
         this.carId = carId;
     }
@@ -86,12 +149,8 @@ public class UserOrder {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("UserOrder{");
-        sb.append("orderId=").append(orderId);
-        sb.append(", carId=").append(carId);
-        sb.append(", creationDateTime=").append(creationDateTime);
-        sb.append(", state=").append(state);
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder("UserOrder № ");
+        sb.append(orderId).append(", ").append(state);
         return sb.toString();
     }
 }

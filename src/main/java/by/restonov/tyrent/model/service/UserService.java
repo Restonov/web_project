@@ -8,14 +8,28 @@ import by.restonov.tyrent.model.dao.EntityTransaction;
 import by.restonov.tyrent.model.dao.impl.UserDaoImpl;
 import by.restonov.tyrent.model.service.builder.UserBuilder;
 import by.restonov.tyrent.util.DataValidator;
-import by.restonov.tyrent.util.DataEncryption;
+import by.restonov.tyrent.util.DataEncryptor;
 import by.restonov.tyrent.util.MailSender;
 
 import javax.mail.MessagingException;
 import java.util.*;
 
+
+/**
+ * Service, that works with user data
+ */
 public class UserService {
 
+    /**
+     * Validate new user data and password
+     * with RegEx pattern
+     * while user sign up
+     *
+     * @param userData - data from jsp form
+     * @param userPassword - also from sjp form
+     * @return validation result
+     * @see DataValidator
+     */
     public boolean validateUser(Map<String, String> userData, String userPassword) {
         boolean validationResult = false;
         if (DataValidator.validateData(userData) && DataValidator.validatePassword(userPassword)) {
@@ -24,6 +38,16 @@ public class UserService {
         return validationResult;
     }
 
+    /**
+     * Validate exists user login and password
+     * with RegEx pattern
+     * while user sign in
+     *
+     * @param userLogin - user login from jsp form
+     * @param userPassword - user password from jsp form
+     * @return validation result
+     * @see DataValidator
+     */
     public boolean validateUser(String userLogin, String userPassword) {
         boolean validationResult = false;
         if (DataValidator.validateLatinText(userLogin) && DataValidator.validatePassword(userPassword)) {
@@ -32,28 +56,39 @@ public class UserService {
         return validationResult;
     }
 
+    /**
+     * Register new user, hash password and get Optional user
+     * if user with the same login or email
+     * not exists in DB
+     *
+     * @param userData user data
+     * @param userPassword user password
+     * @return Optional of User type
+     * @throws ServiceException default exception of service layer
+     * @see #checkUserNotExists(Map userData)
+     * @see DataEncryptor
+     */
     public Optional<User> registerNewUserAndGet(Map<String, String> userData, String userPassword) throws ServiceException {
         Optional<User> optionalUser;
         if (checkUserNotExists(userData)) {
-            UserBuilder builder = UserBuilder.INSTANCE;
-            UserDaoImpl dao = new UserDaoImpl();
             EntityTransaction transaction = new EntityTransaction();
             try {
+                UserDaoImpl dao = new UserDaoImpl();
                 transaction.initMultipleQueries(dao);
+                UserBuilder builder = UserBuilder.INSTANCE;
                 User user = builder.build(userData);
-                DataEncryption authentication = new DataEncryption();
+                user.setOnline(true);
+                optionalUser = Optional.of(user);
+                DataEncryptor authentication = new DataEncryptor();
                 String hashedPassword = authentication.encrypt(userPassword.toCharArray());
                 dao.add(user);
                 dao.addUserPassword(user, hashedPassword);
                 transaction.commit();
-                user.setOnline(true);
-                optionalUser = Optional.of(user);
             } catch (DaoException e) {
                 try {
                     transaction.rollback();
                 } catch (DaoException daoException) {
-                    //TODO check catches in Services
-                    daoException.printStackTrace();
+                    throw new ServiceException("Error rollback transaction", e);
                 }
                 throw new ServiceException("Error registering new User", e);
             } finally {
@@ -69,10 +104,21 @@ public class UserService {
         return optionalUser;
     }
 
+    /**
+     * Find exists login and password and check if it equals
+     * to data from jsp form
+     * when user sign in
+     *
+     * @param enteredLogin the entered login
+     * @param enteredPassword the entered password
+     * @return check result
+     * @throws ServiceException default exception of service layer
+     * @see DataEncryptor
+     */
     public boolean checkUserLoginAndPassword(String enteredLogin, String enteredPassword) throws ServiceException {
         boolean checkResult = false;
         UserDaoImpl dao = new UserDaoImpl();
-        DataEncryption authentication = new DataEncryption();
+        DataEncryptor authentication = new DataEncryptor();
         Optional<String> optionalPassword;
         EntityTransaction transaction = new EntityTransaction();
         try {
@@ -90,6 +136,13 @@ public class UserService {
         return checkResult;
     }
 
+    /**
+     * Find user in DB by it's login
+     *
+     * @param login user login
+     * @return Optional of User type
+     * @throws ServiceException default exception of service layer
+     */
     public Optional<User> findUserByLogin(String login) throws ServiceException {
         Optional<User> optionalUser;
         UserDaoImpl dao = new UserDaoImpl();
@@ -105,6 +158,13 @@ public class UserService {
         return optionalUser;
     }
 
+    /**
+     * Find user in DB by it's id
+     *
+     * @param id user id
+     * @return Optional of User type
+     * @throws ServiceException default exception of service layer
+     */
     public Optional<User> findUserById(long id) throws ServiceException {
         Optional<User> optionalUser;
         UserDaoImpl dao = new UserDaoImpl();
@@ -120,6 +180,13 @@ public class UserService {
         return optionalUser;
     }
 
+    /**
+     * Find user in DB by it's email
+     *
+     * @param email user email
+     * @return Optional of User type
+     * @throws ServiceException default exception of service layer
+     */
     public Optional<User> findUserByEmail(String email) throws ServiceException {
         Optional<User> optionalUser;
         UserDaoImpl dao = new UserDaoImpl();
@@ -135,6 +202,12 @@ public class UserService {
         return optionalUser;
     }
 
+    /**
+     * Find all users in DB
+     *
+     * @return List of Users
+     * @throws ServiceException default exception of service layer
+     */
     public List<User> findUserList() throws ServiceException {
         List<User> userList;
         UserDaoImpl dao = new UserDaoImpl();
@@ -150,12 +223,22 @@ public class UserService {
         return userList;
     }
 
+    /**
+     * Activate client and get Optional of User
+     *
+     * @param activationData hashed user login
+     * @param userEmail user email
+     * @return Optional of User type
+     * @throws ServiceException default exception of service layer
+     * @see #findUserByEmail(String userEmail)
+     * @see DataEncryptor
+     */
     public Optional<User> activateClientAndGet(String activationData, String userEmail) throws ServiceException {
         Optional<User> optionalUser = findUserByEmail(userEmail);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             String userLogin = user.getLogin();
-            DataEncryption encryption = new DataEncryption();
+            DataEncryptor encryption = new DataEncryptor();
             if (encryption.decrypt(userLogin.toCharArray(), activationData)) {
                 user.setState(User.State.ACTIVATED);
                 updateUser(user);
@@ -165,8 +248,16 @@ public class UserService {
         return optionalUser;
     }
 
+    /**
+     * Send activation email with encrypted login and email
+     *
+     * @param userEmail user email
+     * @param userLogin user login
+     * @throws ServiceException default exception of service layer
+     * @see DataEncryptor
+     */
     public void sendActivationEmail(String userEmail, String userLogin) throws ServiceException {
-        DataEncryption encryption = new DataEncryption();
+        DataEncryptor encryption = new DataEncryptor();
         String encryptedLogin = encryption.encrypt(userLogin.toCharArray());
         MailSender mail = new MailSender();
         try {
@@ -176,6 +267,12 @@ public class UserService {
         }
     }
 
+    /**
+     * Update exists user
+     *
+     * @param user User
+     * @throws ServiceException default exception of service layer
+     */
     public void updateUser(User user) throws ServiceException {
         UserDaoImpl dao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
@@ -190,6 +287,14 @@ public class UserService {
 
     }
 
+    /**
+     * Check if user with that login and/or email already
+     * exists in DB
+     *
+     * @param userData the user data
+     * @return check result
+     * @throws ServiceException default exception of service layer
+     */
     private boolean checkUserNotExists(Map<String, String> userData) throws ServiceException {
         boolean userNotExists;
         UserDaoImpl dao = new UserDaoImpl();

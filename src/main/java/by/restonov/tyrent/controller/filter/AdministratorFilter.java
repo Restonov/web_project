@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+
+/**
+ * Filter that checks if User in the session
+ * is Administrator
+ * and activate Admin panel
+ */
 @WebFilter
 public class AdministratorFilter implements Filter {
 

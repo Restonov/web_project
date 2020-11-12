@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Shows to current User his Orders
+ */
 public class CurrentUserOrderTag extends TagSupport {
 
     @Override

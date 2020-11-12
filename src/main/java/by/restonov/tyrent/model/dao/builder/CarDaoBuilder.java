@@ -7,9 +7,22 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Car builder
+ */
 public enum CarDaoBuilder {
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
+    /**
+     * Build Car from ResultSet data
+     *
+     * @param set ResultSet
+     * @return Car instance
+     * @throws SQLException DB access error
+     */
     public Car build(ResultSet set) throws SQLException {
         long carId = set.getLong(ParameterName.CAR_ID);
         String name = set.getString(ParameterName.CAR_NAME);

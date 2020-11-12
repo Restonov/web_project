@@ -1,6 +1,6 @@
 package util;
 
-import by.restonov.tyrent.util.DataEncryption;
+import by.restonov.tyrent.util.DataEncryptor;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
@@ -8,11 +8,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class DataEncryptionTest extends Assert {
-    DataEncryption encryption;
+    DataEncryptor encryption;
 
     @BeforeClass
     public void setUp() {
-        encryption = new DataEncryption();
+        encryption = new DataEncryptor();
 
     }
 

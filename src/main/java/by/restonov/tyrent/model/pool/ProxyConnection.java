@@ -7,9 +7,18 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+
+/**
+ * Shell for the default Connection type
+ */
 public class ProxyConnection implements Connection {
     private Connection connection;
 
+    /**
+     * Instantiates a new Proxy connection
+     *
+     * @param connection Connection
+     */
     public ProxyConnection(Connection connection) {
         this.connection = connection;
     }
@@ -57,12 +66,17 @@ public class ProxyConnection implements Connection {
     @Override
     public void close() {
         try {
-            ConnectionPool.INSTANCE.releaseConnection(connection);
+            ConnectionPool.INSTANCE.takeBackConnection(connection);
         } catch (ConnectionPoolException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Real Connection close
+     *
+     * @throws SQLException the sql exception
+     */
     public void closeConnection() throws SQLException {
         connection.close();
     }

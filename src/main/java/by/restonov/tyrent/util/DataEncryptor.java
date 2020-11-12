@@ -11,7 +11,13 @@ import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DataEncryption {
+
+/**
+ * Data encryption for User password
+ * and Uer login for email activation
+ *
+ */
+public class DataEncryptor {
     public static final String ID = "$31$";
     public static final int DEFAULT_COST = 16;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
@@ -20,11 +26,20 @@ public class DataEncryption {
     private final SecureRandom random;
     private final int cost;
 
-    public DataEncryption() {
+    /**
+     * Instantiates a new Data encryptor instance
+     */
+    public DataEncryptor() {
         this.cost = DEFAULT_COST;
         this.random = new SecureRandom();
     }
 
+    /**
+     * Encrypt entered data with salt
+     *
+     * @param enteredData entered data
+     * @return result string
+     */
     public String encrypt(char[] enteredData) {
         byte[] salt = new byte[SIZE / 8];
         random.nextBytes(salt);
@@ -36,6 +51,14 @@ public class DataEncryption {
         return ID + cost + '$' + enc.encodeToString(hash);
     }
 
+    /**
+     * Compare new entered data and exists
+     * encrypted data
+     *
+     * @param enteredData the entered data
+     * @param hashedData  the hashed data
+     * @return the boolean
+     */
     public boolean decrypt(char[] enteredData, String hashedData) {
         Matcher m = layout.matcher(hashedData);
         if (!m.matches())

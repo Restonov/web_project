@@ -11,17 +11,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
 
+
+/**
+ * Connection provider
+ */
 enum ConnectionCreator {
+
+    /**
+     * Thread-safe Singleton instance
+     */
     INSTANCE;
 
     private static final Logger logger = LogManager.getLogger();
-
     private static final String DRIVER = ConfigurationManager.getProperty("database.driver");
     private static final String URL = ConfigurationManager.getProperty("database.url");
     private static final String USER = ConfigurationManager.getProperty("database.user");
     private static final String PASSWORD = ConfigurationManager.getProperty("database.password");
 
-    ProxyConnection createConnection() throws ConnectionPoolException {
+    /**
+     * Create connection with DB
+     *
+     * @return new proxy connection
+     */
+    ProxyConnection createConnection() {
         Connection connection;
         ProxyConnection proxyConnection;
         try {
@@ -33,15 +45,23 @@ enum ConnectionCreator {
         }
     }
 
+    /**
+     * Register connection driver
+     */
     void registerDriver() {
         try {
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
             logger.fatal("Driver error", e);
+            throw new ConnectionPoolException("Driver error", e);
         }
     }
 
-    void deregisterDriver() throws ConnectionPoolException {
+    /**
+     * Deregister connection driver
+     *
+     */
+    void deregisterDriver() {
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()) {
             Driver driver = drivers.nextElement();
@@ -49,6 +69,7 @@ enum ConnectionCreator {
                 DriverManager.deregisterDriver(driver);
             } catch (SQLException e) {
                 logger.error("Error while deregister drivers", e);
+                throw new ConnectionPoolException("Error while deregister drivers", e);
             }
         }
     }

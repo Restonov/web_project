@@ -9,6 +9,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * List of the Orders for Admin panel
+ */
 public class AdminOrderListTag extends TagSupport {
 
     @Override

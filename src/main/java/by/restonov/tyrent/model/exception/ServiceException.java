@@ -1,8 +1,14 @@
 package by.restonov.tyrent.model.exception;
 
+/**
+ * Exception, that throws by Service layer
+ */
 public class ServiceException extends Exception {
-    public ServiceException() {
-    }
+
+    /**
+     * default constructors
+     */
+    public ServiceException() { }
 
     public ServiceException(String message) {
         super(message);

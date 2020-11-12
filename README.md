@@ -1,3 +1,10 @@
+<p>
+  <code>Java</code>
+  <code>Java Servlet</code>
+  <code>Jsp</code>
+  <code>Postgresql</code>
+</p>
+
 # TyRent – car rental service
 The app is designed to help users book cars from the available car list. In addition to base functional, there are some extra-features such as:
 •	Adding salt to password hashing

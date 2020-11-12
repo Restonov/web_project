@@ -27,6 +27,7 @@ The app is designed to help users book cars from the available car list. In addi
 <h3>Client`s scope</h3>
 <ul>
 <li>Browse profile info</li>
+<li> Browse available cars info</li>
 <li>Book a car</li>
 <li>Browse order list</li>
 </ul>

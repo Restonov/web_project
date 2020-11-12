@@ -4,26 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <servlet>
-        <servlet-name>user_list</servlet-name>
-        <jsp-file>/WEB-INF/jsp/admin/user_list.jsp</jsp-file>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>user_list</servlet-name>
-        <url-pattern>/user_list</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>profile</servlet-name>
-        <jsp-file>/WEB-INF/jsp/user_profile.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>profile</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
-
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
@@ -53,10 +33,29 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>AdministratorFilter</filter-name>
+        <filter-class>by.restonov.tyrent.controller.filter.AdministratorFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdministratorFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/jsp/error/error404.jsp</location>
     </error-page>
+    
+    <servlet>
+        <servlet-name>404</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/error404.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>404</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
 
     <error-page>
         <error-code>500</error-code>
@@ -67,5 +66,4 @@
         <exception-type>java.lang.RuntimeException</exception-type>
         <location>/WEB-INF/jsp/error/error_runtime.jsp</location>
     </error-page>
-
 </web-app>

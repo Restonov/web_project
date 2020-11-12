@@ -11,17 +11,15 @@
     <div class="nav-scroller py-1 mb-2" style="position: static;">
         <nav class="nav d-flex justify-content-between" style="position: static; display: block; left: auto; height: 30px;">
             <form method="POST" action="controller">
-                <input class="p-2 text-muted" type="submit" value="User list" style="outline: 0; border: 0; background: 0;">
+                <input class="p-2 text-muted" type="submit" value="<fmt:message key="admin.user.list"/>" style="outline: 0; border: 0; background: 0;">
                 <input type="hidden" name="command" value="show_user_list" />
             </form>
-
             <form method="POST" action="controller">
-                <input class="p-2 text-muted" type="submit" value="Сar list" style="outline: 0; border: 0; background: 0;">
+                <input class="p-2 text-muted" type="submit" value="<fmt:message key="admin.car.list"/>" style="outline: 0; border: 0; background: 0;">
                 <input type="hidden" name="command" value="show_car_list" />
             </form>
-
             <form method="POST" action="controller">
-                <input class="p-2 text-muted" type="submit" value="Order list" style="outline: 0; border: 0; background: 0;">
+                <input class="p-2 text-muted" type="submit" value="<fmt:message key="admin.order.list"/>" style="outline: 0; border: 0; background: 0;">
                 <input type="hidden" name="command" value="show_order_list" />
             </form>
         </nav>

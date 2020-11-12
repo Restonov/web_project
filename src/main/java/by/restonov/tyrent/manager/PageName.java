@@ -8,6 +8,9 @@ public class PageName {
     public static final String MAIN_PAGE = "/WEB-INF/jsp/main.jsp";
     public static final String CAR_INFO_PAGE = "/WEB-INF/jsp/car_info.jsp";
     public static final String ERROR_500_PAGE = "/WEB-INF/jsp/error/error500.jsp";
+    public static final String ERROR_404_PAGE = "/WEB-INF/jsp/error/error404.jsp";
+    public static final String ERROR_404_PATH = "/404";
+    public static final String ERROR_RUNTIME_PAGE = "/WEB-INF/jsp/error/error_runtime.jsp";
 
     //admin and operator
     public static final String USER_LIST_PAGE = "/WEB-INF/jsp/admin/user_list.jsp";

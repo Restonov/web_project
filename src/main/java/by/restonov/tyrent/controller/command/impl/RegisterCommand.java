@@ -17,12 +17,24 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Action command for new User registering
+ * User register command
+ *
  */
 public class RegisterCommand implements ActionCommand {
     private static final Logger logger = LogManager.getLogger();
     private UserService service = new UserService();
 
+    /**
+     * Guest sign up to the application POST method
+     * Get user parameters from jsp form
+     * delegating data validation to the {@link UserService}
+     * if data validated: try to register new user, send activation email
+     * attach user to the session and forward to the main page
+     * otherwise returns to the register page with alert message
+     *
+     * @param request - HttpServletRequest
+     * @return result page
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page;
@@ -48,7 +60,6 @@ public class RegisterCommand implements ActionCommand {
                     service.sendActivationEmail(user.getEmail(), user.getLogin());
                     HttpSession session = request.getSession();
                     session.setAttribute(AttributeName.USER, user);
-                    session.setAttribute(AttributeName.ACTIVATE_ADMIN_PANEL, user.getRole() != User.Role.CLIENT);
                     request.setAttribute(AttributeName.WELCOME_MESSAGE, true);
                     page = PageName.MAIN_PAGE;
                 } else {

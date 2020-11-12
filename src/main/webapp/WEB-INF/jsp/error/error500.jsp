@@ -1,15 +1,37 @@
 <%@ page isErrorPage="true" contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <title>Error page</title>
+    <head>
+        <title>Error page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    </head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 </head>
 <body>
-    Request from ${pageContext.errorData.requestURI} is failed
-    <br>
-    Servlet name or type: ${pageContext.errorData.servletName}
-    <br>
-    Status code: ${pageContext.errorData.statusCode}
-    <br>
-    Exception: ${pageContext.errorData.throwable}
+<section id="wrapper" class="container-fluid" style="margin-top: 100px; margin-bottom: 20px">
+    <div class="error-box">
+        <div class="error-body text-center">
+            <span style="font-size: 150px; color: #0e79c2"><strong>500</strong></span>
+            <h3> <fmt:message key="error.text.servlet.error"/></h3>
+            <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-rounded m-b-40"><fmt:message key="error.button.home"/></a>
+        </div>
+    </div>
+</section>
+    <hr/>
+    <div style="text-align: center">
+        Request from ${pageContext.errorData.requestURI} is failed
+        <br>
+        Servlet name or type: ${pageContext.errorData.servletName}
+        <br>
+        Status code: ${pageContext.errorData.statusCode}
+        <br>
+        Exception: ${pageContext.errorData.throwable}
+    </div>
 </body>
 </html>

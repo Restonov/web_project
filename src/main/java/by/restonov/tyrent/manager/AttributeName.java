@@ -15,6 +15,7 @@ public class AttributeName {
     public static final  String CAR_NOT_AVAILABLE_ALERT = "car_not_available_alert";
     public static final  String SUCCESSFUL_ORDER_MESSAGE = "successful_order";
     public static final  String USER_ACTIVATED_MESSAGE = "user_activated";
+    public static final  String ERROR_404 = "error_404";
 
     //admin and operator
     public static final String ACTIVATE_ADMIN_PANEL = "activate_admin_panel";

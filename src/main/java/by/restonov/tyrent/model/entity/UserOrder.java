@@ -1,5 +1,6 @@
 package by.restonov.tyrent.model.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,6 +10,9 @@ public class UserOrder {
     private long userId;
     private LocalDateTime creationDateTime;
     private State state;
+    private String carName;
+    private String userName;
+    private BigDecimal carCost;
 
     public enum State {
         PROCESSED(), CANCELED(), COMPLETED()

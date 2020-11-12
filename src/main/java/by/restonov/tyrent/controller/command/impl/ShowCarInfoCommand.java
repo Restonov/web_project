@@ -13,11 +13,23 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * Show page with car info
+ *
+ */
 public class ShowCarInfoCommand implements ActionCommand {
     private static final Logger logger = LogManager.getLogger();
     private CarService service = new CarService();
 
-    //TODO complete catches and other logic + dao var names
+    /**
+     * get "chosen_car_id" parameter from chosen "SHOW INFO" button
+     * find available car in DB by "car_id"
+     * if car available forward to page with car info
+     * otherwise forward to main page with alert message
+     *
+     * @param request - HttpServletRequest
+     * @return result page
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page;

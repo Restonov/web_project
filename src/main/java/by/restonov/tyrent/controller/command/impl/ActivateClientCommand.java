@@ -13,10 +13,24 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
+/**
+ * Client activation command
+ *
+ */
 public class ActivateClientCommand implements ActionCommand {
     private static final Logger logger = LogManager.getLogger();
     private UserService service = new UserService();
 
+    /**
+     * user performs GET command with hashed data and user email parameters
+     * {@link UserService} performs validation
+     * if user validated forward to the profile page if user is online
+     * or to the main page if user is offline
+     * otherwise forward to the login page
+     *
+     * @param request - HttpServletRequest
+     * @return result page
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page;

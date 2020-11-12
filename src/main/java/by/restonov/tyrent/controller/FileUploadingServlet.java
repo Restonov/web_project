@@ -1,7 +1,6 @@
 package by.restonov.tyrent.controller;
 
 import by.restonov.tyrent.manager.ConfigurationManager;
-import by.restonov.tyrent.manager.MessageManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,8 +19,8 @@ import java.util.UUID;
 
 public class FileUploadingServlet extends HttpServlet {
     private static final String UPLOAD_DIR = "E:\\tmp\\";
-    public static final String SUCCESFULL_UPLOAD = MessageManager.getProperty("message.uploadsuccess");
-    public static final String NOT_SUCCESFULL_UPLOAD = MessageManager.getProperty("message.uploadnotsuccess");
+    public static final String SUCCESFULL_UPLOAD = "success";
+    public static final String NOT_SUCCESFULL_UPLOAD = "not success";
     public static final String RESULT_JSP = ConfigurationManager.getProperty("path.page.upload");
 
     @Override

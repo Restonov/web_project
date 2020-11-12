@@ -28,14 +28,6 @@ public class CurrentUserOrderTag extends TagSupport {
             for (Map<String, Object> order : orderList) {
                 printRow(order);
             }
-        } else {
-            JspWriter out = pageContext.getOut();
-            try {
-                //TODO localization
-                out.write("NO ORDERS YET");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return SKIP_BODY;
     }

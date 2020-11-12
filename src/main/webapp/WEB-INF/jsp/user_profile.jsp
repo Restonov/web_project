@@ -50,10 +50,6 @@
                             <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
                             <span class="text-secondary">Restonov</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>maxplyushko</h6>
-                            <span class="text-secondary">bootdey</span>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -63,7 +59,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Your name</h6>
+                                <h6 class="mb-0"><fmt:message key="profile.text.name"/></h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 ${user.firstName} ${user.lastName}
@@ -72,7 +68,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Email</h6>
+                                <h6 class="mb-0"><fmt:message key="profile.text.email"/></h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 ${user.email}
@@ -81,7 +77,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Phone</h6>
+                                <h6 class="mb-0"><fmt:message key="profile.text.phone"/></h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 ${user.phone}
@@ -93,18 +89,17 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Orders</h6>
+                                <h6 class="mb-0"><fmt:message key="profile.text.orders"/></h6>
                             </div>
                         </div>
                         <table class="table" style="margin-top: 15px">
                             <thead>
                             <tr>
-                                <th> <fmt:message key=""/>
-                                    order_id</th>
-                                <th>Car name</th>
-                                <th>Car cost / day</th>
-                                <th>Order creation date</th>
-                                <th>Order state</th>
+                                <th><fmt:message key="profile.text.order.id"/></th>
+                                <th><fmt:message key="profile.text.car.model"/></th>
+                                <th><fmt:message key="profile.text.car.cost"/></th>
+                                <th><fmt:message key="profile.text.order.date"/></th>
+                                <th><fmt:message key="profile.text.order.state"/></th>
                             </tr>
                             </thead>
                             <tbody>

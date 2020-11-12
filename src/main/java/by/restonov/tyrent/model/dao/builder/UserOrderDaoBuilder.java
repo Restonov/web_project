@@ -28,11 +28,11 @@ public enum UserOrderDaoBuilder {
         return order;
     }
 
+    //TODO create extended order with these fields
     public Map<String, Object> buildMap(ResultSet set) throws SQLException {
         Map<String, Object> orderInfo = new HashMap<>();
         long orderId = set.getLong(ParameterName.ORDER_ID);
         String carName = set.getString(ParameterName.CAR_NAME);
-        //TODO car_cost BIG_DECIMAL
         double carCost = set.getDouble(ParameterName.CAR_COST);
         LocalDateTime dateTime = set.getTimestamp(ParameterName.ORDER_TIMESTAMP).toLocalDateTime();
         String stateFromSet = set.getString(ParameterName.ORDER_STATE);

@@ -14,10 +14,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
+/**
+ * Create new order command
+ *
+ */
 public class MakeOrderCommand implements ActionCommand {
     private CarService carService = new CarService();
     private UserOrderService orderService = new UserOrderService();
-    
+
+    /**
+     * get "chosen_car_id" parameter from chosen "BOOK CAR" button
+     * find available car in DB by "car_id"
+     * if car available create new order, attach car and user
+     * and forward to user profile page
+     * otherwise forward to main page with alert message
+     *
+     * @param request - HttpServletRequest
+     * @return result page
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page;

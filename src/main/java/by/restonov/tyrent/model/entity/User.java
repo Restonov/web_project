@@ -1,6 +1,8 @@
 package by.restonov.tyrent.model.entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private long userId;
     private String firstName;
     private String lastName;

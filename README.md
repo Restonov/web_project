@@ -36,7 +36,7 @@ The app is designed to help users book cars from the available car list. In addi
 <li>Browse profile info</li>
 <li>Delete account</li>
 <li>Browse available cars info</li>
-<li>Book a car</li>
+<li>Book a car - make order</li>
 <li>Browse order list</li>
 </ul>
 

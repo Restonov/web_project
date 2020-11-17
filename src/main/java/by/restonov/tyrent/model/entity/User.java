@@ -15,7 +15,6 @@ public class User implements Serializable {
     private String phone;
     private Role role;
     private State state;
-    private boolean isOnline;
 
     /**
      * User roles according to DB
@@ -28,7 +27,7 @@ public class User implements Serializable {
      * User states according to DB
      */
     public enum State {
-        ACTIVATED(), NOT_ACTIVATED(), BLOCKED()
+        ACTIVATED(), NOT_ACTIVATED(), BLOCKED(), FROZEN()
     }
 
     /**
@@ -103,25 +102,7 @@ public class User implements Serializable {
         this.role = userRole;
     }
 
-    /**
-     * Gets online state
-     *
-     * @return online state
-     */
-    public boolean getOnline() {
-        return isOnline;
-    }
-
-    /**
-     * Sets online state
-     *
-     * @param online online state
-     */
-    public void setOnline(boolean online) {
-        this.isOnline = online;
-    }
-
-    /**
+     /**
      * Gets first name
      *
      * @return the first name

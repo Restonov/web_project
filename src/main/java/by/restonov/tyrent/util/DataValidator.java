@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DataValidator {
-    private static final String LATIN_TEXT_PATTERN = "^[a-zA-Z]+$";
+    private static final String LATIN_TEXT_PATTERN = "^[a-zA-Z]{3,50}$";
     private static final String PASSWORD_PATTERN = "^[A-Za-z0-9!@#$%_&\\-*()<>]{6,12}$";
     private static final String EMAIL_PATTERN = "^[\\w\\d.]+@[a-zA-Z.]+\\.[A-Za-z]{1,4}$";
     private static final String PHONE_PATTERN = "^[\\d]{12}$";

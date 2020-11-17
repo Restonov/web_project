@@ -2,7 +2,6 @@ package by.restonov.tyrent.model.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -12,29 +11,63 @@ public class UserOrder {
     private long orderId;
     private long carId;
     private long userId;
+    private String carName;
+    private BigDecimal carCost;
     private LocalDateTime creationDateTime;
     private State state;
-    private String carName;
-    private String userName;
-    private BigDecimal carCost;
+
+    /**
+     * Gets car name
+     *
+     * @return the car name
+     */
+    public String getCarName() {
+        return carName;
+    }
+
+    /**
+     * Sets car name.
+     *
+     * @param carName the car name
+     */
+    public void setCarName(String carName) {
+        this.carName = carName;
+    }
+
+    /**
+     * Gets car cost.
+     *
+     * @return the car cost
+     */
+    public BigDecimal getCarCost() {
+        return carCost;
+    }
+
+    /**
+     * Sets car cost.
+     *
+     * @param carCost the car cost
+     */
+    public void setCarCost(BigDecimal carCost) {
+        this.carCost = carCost;
+    }
 
     /**
      * Order states according to DB
      */
     public enum State {
-        PROCESSED(), CANCELED(), COMPLETED()
-    }
-
-    /**
-     * Convert LocalDateTime to
-     * more clear format
-     *
-     * @return formatted Date and time
-     */
-    public String showCreationDateTime() {
-        LocalDateTime dateTime = getCreationDateTime();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return dateTime.format(formatter);
+        /**
+         * Processed state.
+         */
+        PROCESSED(),
+        /**
+         * Canceled state.
+         */
+        CANCELED(),
+        /**
+         * Completed state.
+         */
+        COMPLETED()
     }
 
     /**

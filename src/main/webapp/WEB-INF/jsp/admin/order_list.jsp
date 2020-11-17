@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="admin.order.list"/></title>
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
@@ -14,9 +14,9 @@
 <table class="table" style="margin-top: 30px">
     <thead>
     <tr>
-        <th>Order_id</th>
-        <th>Car_id</th>
-        <th>User_id</th>
+        <th>Order ID</th>
+        <th>Car model</th>
+        <th>User ID</th>
         <th>Creation date</th>
         <th>Current state</th>
     </tr>

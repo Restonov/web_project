@@ -45,10 +45,14 @@ public class LoginCommand implements ActionCommand {
                     optionalUser = service.findUserByLogin(login);
                     if (optionalUser.isPresent()) {
                         User user = optionalUser.get();
-                        user.setOnline(true);
-                        session.setAttribute(AttributeName.USER, user);
-                        request.setAttribute(AttributeName.WELCOME_MESSAGE, true);
-                        page = PageName.MAIN_PAGE;
+                        if (user.getState() != User.State.BLOCKED) {
+                            session.setAttribute(AttributeName.USER, user);
+                            request.setAttribute(AttributeName.WELCOME_MESSAGE, true);
+                            page = PageName.MAIN_PAGE;
+                        } else {
+                            request.setAttribute(AttributeName.USER_BLOCKED_ALERT, true);
+                            page = PageName.LOGIN_PAGE;
+                        }
                     } else {
                         request.setAttribute(AttributeName.LOGIN_PASSWORD_ERROR, true);
                         page = PageName.LOGIN_PAGE;

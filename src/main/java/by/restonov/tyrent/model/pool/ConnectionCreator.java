@@ -68,7 +68,6 @@ enum ConnectionCreator {
             try {
                 DriverManager.deregisterDriver(driver);
             } catch (SQLException e) {
-                logger.error("Error while deregister drivers", e);
                 throw new ConnectionPoolException("Error while deregister drivers", e);
             }
         }

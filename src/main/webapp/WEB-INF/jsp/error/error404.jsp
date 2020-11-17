@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Error page</title>
+    <title><fmt:message key="error.headline"/></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
@@ -24,5 +24,15 @@
         </div>
     </div>
 </section>
+<hr/>
+<div>
+    Request from ${pageContext.errorData.requestURI} is failed
+    <br>
+    Servlet name or type: ${pageContext.errorData.servletName}
+    <br>
+    Status code: ${pageContext.errorData.statusCode}
+    <br>
+    Exception: ${pageContext.errorData.throwable}
+</div>
 </body>
 </html>

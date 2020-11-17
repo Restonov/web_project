@@ -8,7 +8,6 @@ import by.restonov.tyrent.model.dao.impl.UserOrderDaoImpl;
 import by.restonov.tyrent.model.service.builder.UserOrderBuilder;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 
@@ -34,7 +33,7 @@ public class UserOrderService {
             transaction.initSingleQuery(dao);
             dao.add(order);
         } catch (DaoException e) {
-            throw new ServiceException("Add order to database - error");
+            throw new ServiceException("Add order to database - error", e);
         } finally {
             transaction.endSingleQuery();
         }
@@ -53,7 +52,7 @@ public class UserOrderService {
             transaction.initSingleQuery(dao);
             dao.update(order);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException("Update user Order - error", e);
         } finally {
             transaction.endSingleQuery();
         }
@@ -73,7 +72,7 @@ public class UserOrderService {
             transaction.initSingleQuery(dao);
             orderList = dao.findAll();
         } catch (DaoException e) {
-            throw new ServiceException("Find order list in DB - error");
+            throw new ServiceException("Find order list in DB - error", e);
         } finally {
             transaction.endSingleQuery();
         }
@@ -87,20 +86,19 @@ public class UserOrderService {
      * @return List of current User orders
      * @throws ServiceException default exception of service layer
      */
-    //TODO change to extended Order
-    public List<Map<String, Object>> findOrderListByUserId(long userId) throws ServiceException {
-        List<Map<String, Object>> orderList;
+    public Optional<List<UserOrder>> findOrderListByUserId(long userId) throws ServiceException {
+        Optional<List<UserOrder>> optionalOrderList;
         UserOrderDaoImpl dao = new UserOrderDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
-            orderList = dao.findOrderListByUserId(userId);
+            optionalOrderList = dao.findOrderListByUserId(userId);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException("Error while find User order list", e);
         } finally {
             transaction.endSingleQuery();
         }
-        return orderList;
+        return optionalOrderList;
     }
 
     /**

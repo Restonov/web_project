@@ -25,20 +25,24 @@ public enum ConnectionPool {
 
     /**
      * ConnectionPool initialization
+     *
      */
-    //TODO add additional info about LinkedBlockingQueue
     ConnectionPool() {
         freeConnections = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
         activeConnections = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
         connectionCreator = ConnectionCreator.INSTANCE;
         connectionCreator.registerDriver();
         for (int i = 0; i < MAX_POOL_SIZE; i++) {
-            freeConnections.offer(connectionCreator.createConnection());
+            ProxyConnection connection = connectionCreator.createConnection();
+            freeConnections.add(connection);
         }
     }
 
     /**
-     * Provide connection from the pool
+     * Provide connection to the DAO
+     * if it's available in the Pool
+     * otherwise wait until new connection
+     * become available
      *
      * @return Proxy connection
      */
@@ -48,7 +52,7 @@ public enum ConnectionPool {
                 connection = freeConnections.take();
                 activeConnections.put(connection);
             } catch (InterruptedException e) {
-                logger.error("Connection not found", e);
+                logger.error("Provide connection operation - error", e);
                 Thread.currentThread().interrupt();
             }
             return connection;
@@ -65,7 +69,7 @@ public enum ConnectionPool {
                     try {
                         freeConnections.put((ProxyConnection) connection);
                     } catch (InterruptedException e) {
-                        logger.error("Error while releasing connection", e);
+                        logger.error("Take back connection operation - error", e);
                         Thread.currentThread().interrupt();
                     }
                 } else {
@@ -78,6 +82,7 @@ public enum ConnectionPool {
 
     /**
      * Shutdown pool when application stops
+     * wait for connection become available for closing
      */
     public void shutdown() {
             for (int i = 0; i < freeConnections.size(); i++) {
@@ -87,8 +92,9 @@ public enum ConnectionPool {
                 } catch (InterruptedException | SQLException e) {
                     logger.error("Exception during shutdown poll", e);
                     Thread.currentThread().interrupt();
+                } finally {
+                    connectionCreator.deregisterDriver();
                 }
-                connectionCreator.deregisterDriver();
             }
         }
 }

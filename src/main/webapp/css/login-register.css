@@ -147,6 +147,12 @@
     border-bottom: 2px solid #e74c3c;
     margin: 0;
 }
+.form-input-data .form-row > label h2{
+    padding-top: 5px;
+    color: #ff0000;
+    font-size: 6px;
+    text-align: center;
+}
 
 .form-input-data .form-row > label span{
     display: inline-block;

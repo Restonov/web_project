@@ -29,6 +29,7 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     private static final String SELECT_PASSWORD = "SELECT user_password FROM users WHERE user_login = ?";
     private static final String UPDATE_PASSWORD = "UPDATE users SET user_password = ? WHERE user_login = ?";
     private static final String UPDATE_USER = "UPDATE users SET user_first_name = ?, user_last_name = ?, user_login = ?, user_email = ?, user_phone = ?, user_state = ?::user_state, user_role = ?::user_role WHERE user_id = ?";
+    private static final String DELETE_USER = "DELETE FROM users WHERE user_id = ?";
 
     @Override
     public Optional<User> findByName(String name) {
@@ -206,6 +207,16 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
 
     @Override
     public boolean delete(Long id) throws DaoException {
-        throw new UnsupportedOperationException();
+        boolean result = false;
+        if (id != null) {
+            try (PreparedStatement statement = connection.prepareStatement(DELETE_USER)) {
+                statement.setLong(1, id);
+                statement.executeUpdate();
+                result = true;
+            } catch (SQLException e) {
+                throw new DaoException("User not deleted", e);
+            }
+        }
+        return result;
     }
 }

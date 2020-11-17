@@ -77,7 +77,6 @@ public class UserService {
                 transaction.initMultipleQueries(dao);
                 UserBuilder builder = UserBuilder.INSTANCE;
                 User user = builder.build(userData);
-                user.setOnline(true);
                 optionalUser = Optional.of(user);
                 DataEncryptor authentication = new DataEncryptor();
                 String hashedPassword = authentication.encrypt(userPassword.toCharArray());
@@ -150,6 +149,9 @@ public class UserService {
         try {
             transaction.initSingleQuery(dao);
             optionalUser = dao.findUserByLogin(login);
+            if (optionalUser.isPresent() && optionalUser.get().getState() == User.State.FROZEN) {
+                optionalUser = Optional.empty();
+            }
         } catch (DaoException e) {
             throw new ServiceException("Error while finding user by login", e);
         } finally {
@@ -285,6 +287,18 @@ public class UserService {
             transaction.endSingleQuery();
         }
 
+    }
+
+    /**
+     * Change User State in DB
+     *
+     * @param user target User
+     * @param userState new User State
+     * @throws ServiceException default exception of service layer
+     */
+    public void changeUserState(User user, User.State userState) throws ServiceException {
+        user.setState(userState);
+        updateUser(user);
     }
 
     /**

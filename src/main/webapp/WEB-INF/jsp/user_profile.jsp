@@ -23,6 +23,13 @@
     </ctg:page_alert>
 </c:if>
 
+<%--@elvariable id="user_activated" type="java.lang.Boolean"--%>
+<c:if test="${user_activated}">
+    <ctg:page_alert type="success" hide="true">
+        <fmt:message key="message.activated"/>
+    </ctg:page_alert>
+</c:if>
+
 <div class="container" style="margin-top: 40px">
     <div class="main-body">
         <div class="row gutters-sm">
@@ -30,12 +37,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                            <img src="${pageContext.request.contextPath}/images/avatar.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>${user.login}</h4>
                                 <p class="text-secondary mb-1">${user.role.toString().toLowerCase()}</p>
                                 <p class="text-secondary mb-1">${user.state.toString().toLowerCase()}</p>
-                                <button class="btn btn-outline-primary">Edit</button>
+                                <c:if test="${user.role.toString() != 'ADMINISTRATOR'}">
+                                    <form method="get" action="controller">
+                                        <input type="submit" class="btn btn-outline-primary" value="<fmt:message key="profile.button.delete"/>">
+                                        <input type="hidden" name="user_id" value="${user.id}">
+                                        <input type="hidden" name="command" value="freeze_account">
+                                    </form>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -103,7 +116,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <ctg:current_user_order/>
+                            <ctg:current_user_order user="${user}"/>
                             </tbody>
                         </table>
                     </div>

@@ -20,10 +20,6 @@ import java.io.IOException;
 public class AdministratorFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) {
-    }
-
-    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -34,9 +30,5 @@ public class AdministratorFilter implements Filter {
             session.setAttribute(AttributeName.ACTIVATE_ADMIN_PANEL, true);
         }
         chain.doFilter(request, response);
-    }
-
-    @Override
-    public void destroy() {
     }
 }

@@ -1,8 +1,7 @@
 package by.restonov.tyrent.controller.factory;
 
 import by.restonov.tyrent.controller.command.ActionCommand;
-import by.restonov.tyrent.controller.command.CommandEnum;
-import by.restonov.tyrent.manager.AttributeName;
+import by.restonov.tyrent.controller.command.CommandType;
 import by.restonov.tyrent.manager.ParameterName;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ public class ActionFactory {
 
     /**
      * If request "command" parameter is not null or blank
-     * try to get command value from {@link CommandEnum}
+     * try to get command value from {@link CommandType}
      * otherwise return empty Optional
      *
      * @param request - HttpServletRequest
@@ -34,11 +33,10 @@ public class ActionFactory {
             optionalCommand = Optional.empty();
         } else {
             try {
-                CommandEnum commandEnum = CommandEnum.valueOf(action.toUpperCase());
-                ActionCommand command = commandEnum.getCurrentCommand();
+                CommandType commandType = CommandType.valueOf(action.toUpperCase());
+                ActionCommand command = commandType.getCurrentCommand();
                 optionalCommand = Optional.of(command);
             } catch (IllegalArgumentException e) {
-                request.setAttribute(AttributeName.ERROR_404, e);
                 optionalCommand = Optional.empty();
             }
         }

@@ -8,7 +8,7 @@
 </head>
 <body>
 <hr>
-<form class="container" action="controller" method="post">
+<form class="container" action="controller" method="get">
     <p class="float-right"></p>
     <p><button type="submit" class="btn btn-dark btn-sm" style="position: relative; float: right; left: auto;" name="page_language" value="ru">RU</button>
         <button type="submit" class="btn btn-dark btn-sm" style="position: static; float: right; left: auto; display: inline-block; margin-right: 10px; margin-top: auto; right: auto;" name="page_language" value="en">EN</button>

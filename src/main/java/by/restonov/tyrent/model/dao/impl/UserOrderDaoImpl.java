@@ -17,9 +17,9 @@ import java.util.*;
 public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements UserOrderDao {
     private static final Logger logger = LogManager.getLogger();
     private static final String INSERT_NEW_ORDER = "INSERT INTO orders (order_id, car_id, user_id, order_timestamp, order_state) VALUES (?, ?, ?, ?, ?::order_state)";
-    private static final String SELECT_ORDER_BY_ID = "SELECT order_id, car_id, user_id, order_timestamp, order_state FROM orders WHERE order_id = ?";
-    private static final String SELECT_ALL_ORDERS = "SELECT order_id, car_id, user_id, order_timestamp, order_state FROM orders ORDER BY order_state ASC";
-    private static final String SELECT_ORDER_INFO = "SELECT order_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.user_id = ?";
+    private static final String SELECT_ALL_ORDERS = "SELECT order_id, orders.car_id, user_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.car_id = cars.car_id ORDER BY order_state ASC";
+    private static final String SELECT_ALL_ORDERS_BY_USER_ID = "SELECT order_id, orders.car_id, user_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.car_id = cars.car_id WHERE user_id = ? ORDER BY order_state ASC";
+    private static final String SELECT_ORDER_BY_ID = "SELECT order_id, orders.car_id, user_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.car_id = cars.car_id WHERE user_id = ?";
     private static final String UPDATE_ORDER = "UPDATE orders SET car_id = ?, user_id = ?, order_timestamp = ?, order_state = ?::order_state WHERE order_id = ?";
 
     @Override
@@ -116,28 +116,25 @@ public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements Us
     }
 
     @Override
-    public List<Map<String, Object>> findOrderListByUserId(long userId) throws DaoException {
-        List<Map<String, Object>> orderList = new ArrayList<>();
-        Map<String, Object> orderInfo;
+    public Optional<List<UserOrder>> findOrderListByUserId(long userId) throws DaoException {
+        Optional<List<UserOrder>> optionalOrderList;
+        List<UserOrder> orderList = new ArrayList<>();
         UserOrderDaoBuilder builder = UserOrderDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_ORDER_INFO)){
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_ORDERS_BY_USER_ID)){
             statement.setLong(1, userId);
             resultSet = statement.executeQuery();
-            if (resultSet.next()) {
                 while (resultSet.next()) {
-                    orderInfo = builder.buildMap(resultSet);
-                    orderList.add(orderInfo);
+                    UserOrder order = builder.build(resultSet);
+                    orderList.add(order);
                 }
-            } else {
-                orderList = null;
-            }
+                optionalOrderList = Optional.of(orderList);
         } catch (SQLException e) {
-            throw new DaoException("Error while finding order info", e);
+            throw new DaoException("Error while finding orders", e);
         } finally {
             assert resultSet != null;
             closeResultSet(resultSet);
         }
-        return orderList;
+        return optionalOrderList;
     }
 }

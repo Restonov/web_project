@@ -83,7 +83,6 @@ public abstract class AbstractDao <K, T>{
      *
      * @param set - ResultSet
      */
-    //TODO check all dao methods for this
     protected void closeResultSet(ResultSet set) throws DaoException {
         try {
             set.close();

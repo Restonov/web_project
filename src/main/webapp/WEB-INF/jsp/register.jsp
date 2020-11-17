@@ -22,6 +22,7 @@
                     </div>
 				   
 					<p style="color:red">
+                        <%--@elvariable id="data_validation_error" type="java.lang.Boolean"--%>
                         <c:if test="${data_validation_error}">
                         <span>
                         <fmt:message key="alert.invalid"/>
@@ -29,6 +30,7 @@
                         </c:if>
 					</p>
                     <p style="color:red">
+                        <%--@elvariable id="user_already_exists" type="java.lang.Boolean"--%>
                         <c:if test="${user_already_exists}">
                         <span>
                         <fmt:message key="alert.user"/>
@@ -36,6 +38,7 @@
                         </c:if>
                     </p>
                     <p style="color:red">
+                        <%--@elvariable id="registration_error" type="java.lang.Boolean"--%>
                         <c:if test="${registration_error}">
                         <span>
                         <fmt:message key="alert.registration.error"/>

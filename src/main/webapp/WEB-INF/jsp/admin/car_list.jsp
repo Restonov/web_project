@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="admin.car.list"/></title>
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>

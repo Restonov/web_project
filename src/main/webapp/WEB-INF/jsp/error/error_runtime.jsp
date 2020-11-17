@@ -3,19 +3,19 @@
 
 <html>
 <head>
-    <title>Error page</title>
+    <title><fmt:message key="error.headline"/></title>
 </head>
 <section id="wrapper" class="container-fluid" style="margin-top: 100px; margin-bottom: 20px">
     <div class="error-box">
         <div class="error-body text-center">
-            <span style="font-size: 150px; color: #0e79c2"><strong>Runtime error</strong></span>
+            <span style="font-size: 100px; color: #0e79c2"><strong>Runtime error</strong></span>
             <h3> <fmt:message key="error.text.servlet.error"/></h3>
             <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-rounded m-b-40"><fmt:message key="error.button.home"/></a>
         </div>
     </div>
 </section>
 <hr/>
-<div style="text-align: center">
+<div>
     Request from ${pageContext.errorData.requestURI} is failed
     <br>
     Servlet name or type: ${pageContext.errorData.servletName}

@@ -17,10 +17,6 @@ import java.io.IOException;
 public class LocaleFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) {
-    }
-
-    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -29,9 +25,5 @@ public class LocaleFilter implements Filter {
             session.setAttribute(AttributeName.LOCALE, AttributeName.EN);
         }
         chain.doFilter(request, response);
-    }
-
-    @Override
-    public void destroy() {
     }
 }

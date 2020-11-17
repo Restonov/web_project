@@ -14,6 +14,13 @@
 <body>
     <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
 
+    <%--@elvariable id="user_blocked" type="java.lang.Boolean"--%>
+    <c:if test="${user_blocked}">
+        <ctg:page_alert type="danger" hide="false">
+            <fmt:message key="error.user.blocked"/>
+        </ctg:page_alert>
+    </c:if>
+
     <%--@elvariable id="user_activated" type="java.lang.Boolean"--%>
     <c:if test="${user_activated}">
         <ctg:page_alert type="success" hide="true">
@@ -46,7 +53,9 @@
                     <label>
                         <span><fmt:message key="login.label.login"/></span>
                         <input type="text" name="user_login" id="login" value="" onblur="validateLogin()" onchange="validateLogin()">
-                        <h2 id="login_error"></h2>
+                        <h2 id="login_error" style="color: #f5f5f5; font-size: 12px; margin-top: 2px; text-align: center">
+                            <fmt:message key="hint.login.error"/>
+                        </h2>
                     </label>
                 </div>
 
@@ -54,7 +63,9 @@
                     <label>
                         <span><fmt:message key="login.label.password"/></span>
                         <input type="password" name="user_password" id="password" value=""  onblur="validatePassword()" onchange="validatePassword()">
-                        <h2 id="password_error"></h2>
+                        <h2 id="password_error" style="color: #f5f5f5; font-size: 12px; margin-top: 2px; text-align: center">
+                            <fmt:message key="hint.password.error"/>
+                        </h2>
                     </label>
                 </div>
 
@@ -66,7 +77,7 @@
 
             <div class="row-sign-up">
             <form method="GET" action="controller">
-                <button class="form-sign-up" type="submit" name="path" value="register_page">Don't have an account? <strong>Sign up</strong></button>
+                <button class="form-sign-up" type="submit" name="path" value="register_page"><fmt:message key="login.button.sign.up"/> </button>
                 <input type="hidden" name="command" value="forward" />
             </form>
             </div>

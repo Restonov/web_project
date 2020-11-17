@@ -25,13 +25,30 @@
     </session-config>
 
     <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>by.restonov.tyrent.controller.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
         <filter-name>LocaleFilter</filter-name>
         <filter-class>by.restonov.tyrent.controller.filter.LocaleFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LocaleFilter</filter-name>
         <url-pattern>/*</url-pattern>
-        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>by.restonov.tyrent.controller.filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -49,6 +66,15 @@
         <location>/WEB-INF/jsp/error/error404.jsp</location>
     </error-page>
     
+    <servlet>
+        <servlet-name>AccessDenied</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/access_denied.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccessDenied</servlet-name>
+        <url-pattern>/access_denied</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>404</servlet-name>
         <jsp-file>/WEB-INF/jsp/error/error404.jsp</jsp-file>

@@ -22,8 +22,6 @@ public class AttributeName {
      * Car attributes
      */
     public static final String CAR = "car";
-    public static final String CHOSEN_CAR = "chosen_car";
-    public static final String CAR_DESCRIPTION = "car_description";
 
     /**
      * Error pages and alerts attributes
@@ -36,7 +34,7 @@ public class AttributeName {
     public static final  String CAR_NOT_AVAILABLE_ALERT = "car_not_available_alert";
     public static final  String SUCCESSFUL_ORDER_MESSAGE = "successful_order";
     public static final  String USER_ACTIVATED_MESSAGE = "user_activated";
-    public static final  String ERROR_404 = "error_404";
+    public static final  String USER_BLOCKED_ALERT = "user_blocked";
 
     /**
      * Private constructor to prevent class object creation

@@ -1,12 +1,15 @@
 package by.restonov.tyrent.tag;
 
+import by.restonov.tyrent.manager.ParameterName;
 import by.restonov.tyrent.model.entity.UserOrder;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.UserOrderService;
+import by.restonov.tyrent.util.DataTimeFormatter;
 
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -35,11 +38,12 @@ public class AdminOrderListTag extends TagSupport {
     private void printTable(List<UserOrder> orderList) {
         StringBuilder table = new StringBuilder();
         for (UserOrder order : orderList) {
+            String orderDateTime = DataTimeFormatter.showFormattedDateTime(order.getCreationDateTime());
             table.append("<tr>")
                     .append("<th scope=\"row\">").append(order.getOrderId()).append("</th>")
-                    .append("<td>").append(order.getCarId()).append("</td>")
+                    .append("<td>").append(order.getCarName()).append("</td>")
                     .append("<td>").append(order.getUserId()).append("</td>")
-                    .append("<td>").append(order.getCreationDateTime()).append("</td>")
+                    .append("<td>").append(orderDateTime).append("</td>")
                     .append("<td>").append(showOrderStateChooser(order)).append("</td>")
                     .append("</tr>");
         }

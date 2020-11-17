@@ -1,0 +1,16 @@
+by.restonov.tyrent.controller
+by.restonov.tyrent.controller.command
+by.restonov.tyrent.controller.command.impl
+by.restonov.tyrent.controller.factory
+by.restonov.tyrent.controller.filter
+by.restonov.tyrent.manager
+by.restonov.tyrent.model.dao
+by.restonov.tyrent.model.dao.builder
+by.restonov.tyrent.model.dao.impl
+by.restonov.tyrent.model.entity
+by.restonov.tyrent.model.exception
+by.restonov.tyrent.model.pool
+by.restonov.tyrent.model.service
+by.restonov.tyrent.model.service.builder
+by.restonov.tyrent.tag
+by.restonov.tyrent.util

@@ -61,12 +61,8 @@ public class CarDaoImpl extends AbstractDao<Long, Car> implements CarDao {
         } catch (SQLException e) {
             throw new DaoException("Error while finding car by id", e);
         } finally {
-            try {
-                assert resultSet != null;
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            assert resultSet != null;
+            closeResultSet(resultSet);
         }
         return optionalCar;
     }
@@ -86,19 +82,15 @@ public class CarDaoImpl extends AbstractDao<Long, Car> implements CarDao {
         } catch (SQLException e) {
             throw new DaoException("Error while finding car by name", e);
         } finally {
-            try {
-                assert resultSet != null;
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            assert resultSet != null;
+            closeResultSet(resultSet);
         }
         return optionalCar;
     }
 
     @Override
-    public boolean add(Car entity) throws DaoException {
-        return false;
+    public boolean add(Car entity){
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -126,7 +118,7 @@ public class CarDaoImpl extends AbstractDao<Long, Car> implements CarDao {
     }
 
     @Override
-    public boolean delete(Long id) throws DaoException {
-        return false;
+    public boolean delete(Long id) {
+        throw new UnsupportedOperationException();
     }
 }

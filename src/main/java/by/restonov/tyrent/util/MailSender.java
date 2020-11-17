@@ -13,7 +13,7 @@ public class MailSender {
     private static final String BODY_HEADLINE = "Please push the link to activate your account";
     private static final String BODY_START = "http://localhost:8080/tyrent_war_exploded/controller?user_email=";
     private static final String BODY_DATA = "&data=";
-    private static final String BODY_COMMAND = "&command=activate_client";
+    private static final String BODY_COMMAND = "&command=activate_account";
     private static final String CONTENT = "text/html";
     private MimeMessage message;
     private String sendToEmail = ParameterName.SEND_TO_EMAIL;

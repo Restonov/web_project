@@ -13,19 +13,23 @@ public class DataEncryptionTest extends Assert {
     @BeforeClass
     public void setUp() {
         encryption = new DataEncryptor();
-
     }
 
     @AfterClass
     public void tierDown() {
         encryption = null;
-
     }
 
     @Test
-    public void testHash() {
-        String actual = encryption.encrypt("Boris".toCharArray());;
-        String expected = "test";
-        AssertJUnit.assertEquals(expected, actual);
+    public void testEncrypt() {
+        String actual = encryption.encrypt("Restonov".toCharArray());;
+        String expected = "some salted hash";
+        AssertJUnit.assertNotSame(expected, actual);
+    }
+
+    @Test
+    public void testDecrypt() {
+        boolean actual = encryption.decrypt("123456".toCharArray(), "$31$16$VRYgLx4EdEFvcAlo6duK0JA8Th9pkjS4a5TxIiBj2fY");;
+        AssertJUnit.assertTrue(actual);
     }
 }

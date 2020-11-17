@@ -55,7 +55,22 @@ public class ParameterName {
      */
     public static final String SEND_TO_EMAIL = "maxplyushko@gmail.com";
     public static final String MAIL_SUBJECT = "TyRent user verification";
-    public static final String MAIL_BODY = "To complete registration please tap to the link";
+    public static final String MAIL_TRANSPORT_PROTOCOL = "mail.transport.protocol";
+    public static final String MAIL_HOST = "mail.host";
+    public static final String MAIL_QUIT_WAIT = "mail.smtp.quitwait";
+    public static final String MAIL_PORT = "mail.smtp.port";
+    public static final String MAIL_AUTH = "mail.smtp.auth";
+    public static final String MAIL_SOCKET_CLASS = "mail.smtp.socketFactory.class";
+    public static final String MAIL_SOCKET_FALLBACK = "mail.smtp.socketFactory.fallback";
+
+    /**
+     * Incident parameters
+     */
+    public static final String INCIDENT_ID = "incident_id";
+    public static final String INCIDENT_DESCRIPTION = "incident_description";
+    public static final String INCIDENT_TIMESTAMP = "incident_timestamp";
+    public static final String INCIDENT_TYPE_ID = "incident_type_id";
+    public static final String INCIDENT_TYPE_INFO = "incident_type_info";
 
     /**
      * Private constructor to prevent class object creation

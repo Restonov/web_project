@@ -1,0 +1,85 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+.modal .modal_content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    z-index: 99999;
+}
+.modal .modal_content .close_modal_window {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal_form{
+    margin:0 auto;
+    max-width:95%;
+    box-sizing:border-box;
+    padding:40px;
+    border-radius:5px;
+    background:RGBA(255,255,255,1);
+}
+.textbox{
+    height:50px;
+    width:100%;
+    border-radius:3px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size:18px;
+    padding:10px;
+    margin-bottom:30px;
+}
+.message:focus, .textbox:focus{
+    outline:none;
+    border:rgba(24,149,215,1) 2px solid;
+    color:rgba(24,149,215,1);
+}
+.message{
+    background: rgba(255, 255, 255, 0.4);
+    width: 480px;
+    height: 120px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    -moz-border-radius: 3px;
+    font-size:18px;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    display:block;
+    padding:10px;
+    margin-bottom:30px;
+    overflow:hidden;
+}
+.button{
+    height:50px;
+    width:50%;
+    border-radius:3px;
+    border:rgba(0,0,0,.3) 0px solid;
+    box-sizing:border-box;
+    padding:10px;
+    background: #2665f8;
+    color:#FFF;
+    font-family: 'Open Sans', sans-serif;
+    font-weight:400;
+    font-size: 16pt;
+    transition:background .4s;
+    cursor:pointer;
+}
+.button:hover{
+    background: #1647d7;
+}

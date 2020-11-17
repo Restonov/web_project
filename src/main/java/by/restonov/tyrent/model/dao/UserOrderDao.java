@@ -1,9 +1,10 @@
 package by.restonov.tyrent.model.dao;
 
+import by.restonov.tyrent.model.entity.UserOrder;
 import by.restonov.tyrent.model.exception.DaoException;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 /**
  * Interface for operations
@@ -15,5 +16,5 @@ public interface UserOrderDao {
     /**
      *
      */
-    List<Map<String, Object>> findOrderListByUserId(long userId) throws DaoException;
+    Optional<List<UserOrder>> findOrderListByUserId(long userId) throws DaoException;
 }

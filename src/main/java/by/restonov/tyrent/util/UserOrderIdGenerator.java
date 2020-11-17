@@ -6,7 +6,8 @@ public class UserOrderIdGenerator {
     private UserOrderIdGenerator() {}
 
     public static long generateId(long carId, long userId, LocalDateTime orderCreationDateTime) {
-        int nano = orderCreationDateTime.getNano();
-        return carId + userId + nano;
+        StringBuilder stringId = new StringBuilder();
+        stringId.append(userId).append(carId).append(orderCreationDateTime.getNano());
+        return Long.parseLong(stringId.toString());
     }
 }

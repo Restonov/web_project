@@ -3,16 +3,9 @@
 
 <html>
 <head>
-    <title>Error page</title>
-    <head>
-        <title>Error page</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title><fmt:message key="error.headline"/></title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     </head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
 <body>
 <section id="wrapper" class="container-fluid" style="margin-top: 100px; margin-bottom: 20px">
     <div class="error-box">
@@ -24,7 +17,7 @@
     </div>
 </section>
     <hr/>
-    <div style="text-align: center">
+    <div>
         Request from ${pageContext.errorData.requestURI} is failed
         <br>
         Servlet name or type: ${pageContext.errorData.servletName}

@@ -26,12 +26,11 @@ public class CurrentUserTag extends TagSupport{
                 String currentUser = PageContentManager.findProperty("header.current", language);
                 String userRole = user.getRole().toString().toLowerCase();
                 String userLogin = user.getLogin();
-                StringBuilder userInfo = new StringBuilder("<form method=\"POST\" action=\"controller\">");
+                StringBuilder userInfo = new StringBuilder("<form method=\"GET\" action=\"controller\">");
                 userInfo.append("<input class=\"nav-link\" type=\"submit\" value=\"")
                 .append(currentUser).append(userLogin).append(" (").append(userRole).append(")")
                 .append("\" style=\"outline: 0; border: 0; background: 0; margin-top: 20px; color: white\">")
-                .append("<input type=\"hidden\" name=\"path\" value=\"user_profile_page\"/>")
-                .append("<input type=\"hidden\" name=\"command\" value=\"forward\" /></form>");
+                .append("<input type=\"hidden\" name=\"command\" value=\"show_user_profile\" /></form>");
                 try {
                     JspWriter out = pageContext.getOut();
                     out.write(userInfo.toString());

@@ -40,6 +40,11 @@
         <body-content>empty</body-content>
     </tag>
     <tag>
+        <name>incident_list</name>
+        <tag-class>by.restonov.tyrent.tag.AdminIncidentListTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
         <name>order_list</name>
         <tag-class>by.restonov.tyrent.tag.AdminOrderListTag</tag-class>
         <body-content>empty</body-content>
@@ -47,6 +52,11 @@
     <tag>
         <name>car_list</name>
         <tag-class>by.restonov.tyrent.tag.AdminCarListTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>main_page_car_list</name>
+        <tag-class>by.restonov.tyrent.tag.MainPageCarListTag</tag-class>
         <body-content>empty</body-content>
     </tag>
     <tag>
@@ -58,5 +68,10 @@
         <name>current_user_order</name>
         <tag-class>by.restonov.tyrent.tag.CurrentUserOrderTag</tag-class>
         <body-content>empty</body-content>
+        <attribute>
+            <name>user</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
     </tag>
 </taglib>

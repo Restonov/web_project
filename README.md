@@ -23,7 +23,7 @@ The app is designed to help users book cars from the available car list. In addi
 <li>Administrator</li>
 </ul>
 
-<h3>Geust`s scope</h3>
+<h3>Guest`s scope</h3>
 <ul>
 <li>Browse the Main page</li>
 <li>Browse available cars info</li>
@@ -34,8 +34,9 @@ The app is designed to help users book cars from the available car list. In addi
 <h3>Client`s scope</h3>
 <ul>
 <li>Browse profile info</li>
-<li> Browse available cars info</li>
-<li>Book a car</li>
+<li>Delete account</li>
+<li>Browse available cars info</li>
+<li>Book a car - make order</li>
 <li>Browse order list</li>
 </ul>
 
@@ -45,6 +46,9 @@ The app is designed to help users book cars from the available car list. In addi
 <li>Browse orders list</li>
 <li>Browse cars list</li>
 <li>Browse users list</li>
+<li>Browse incident list</li>
 <li>Change order state</li>
+<li>Change client state</li>
+<li>Delete incident</li>  
 </ul>
 

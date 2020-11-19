@@ -3,7 +3,7 @@ package controller.command;
 import by.restonov.tyrent.controller.command.ActionCommand;
 import by.restonov.tyrent.controller.command.impl.ChangeOrderStateAdminCommand;
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.entity.impl.UserOrder;
 import org.testng.Assert;
 import org.testng.annotations.*;
 

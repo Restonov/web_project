@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao;
 
-import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.entity.impl.UserOrder;
 import by.restonov.tyrent.model.exception.DaoException;
 
 import java.util.List;
@@ -12,7 +12,6 @@ import java.util.Optional;
  *
  */
 public interface UserOrderDao {
-
     /**
      *
      */

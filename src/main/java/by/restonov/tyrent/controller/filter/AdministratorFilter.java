@@ -1,7 +1,7 @@
 package by.restonov.tyrent.controller.filter;
 
 import by.restonov.tyrent.manager.AttributeName;
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

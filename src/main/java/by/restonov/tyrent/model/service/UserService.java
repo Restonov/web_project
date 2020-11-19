@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.service;
 
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.manager.ParameterName;

@@ -2,7 +2,7 @@ package by.restonov.tyrent.model.dao.impl;
 
 import by.restonov.tyrent.model.dao.AbstractDao;
 import by.restonov.tyrent.model.dao.builder.IncidentDaoBuilder;
-import by.restonov.tyrent.model.entity.Incident;
+import by.restonov.tyrent.model.entity.impl.Incident;
 import by.restonov.tyrent.model.exception.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,11 +44,6 @@ public class IncidentDaoImpl extends AbstractDao<Long, Incident> {
 
     @Override
     public Optional<Incident> findById(Long id) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Optional<Incident> findByName(String name) {
         throw new UnsupportedOperationException();
     }
 

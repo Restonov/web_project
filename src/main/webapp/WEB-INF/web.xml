@@ -25,6 +25,16 @@
     </session-config>
 
     <filter>
+        <filter-name>XssFilter</filter-name>
+        <filter-class>by.restonov.tyrent.controller.filter.XssFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>XssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+
+    </filter-mapping>
+
+    <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.restonov.tyrent.controller.filter.EncodingFilter</filter-class>
     </filter>

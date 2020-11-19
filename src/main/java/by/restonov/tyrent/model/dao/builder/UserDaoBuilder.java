@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao.builder;
 
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 import by.restonov.tyrent.manager.ParameterName;
 
 import java.sql.ResultSet;

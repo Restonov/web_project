@@ -47,7 +47,7 @@ public enum ConnectionPool {
      * @return Proxy connection
      */
     public Connection provideConnection() {
-            ProxyConnection connection = null;
+        ProxyConnection connection = null;
             try {
                 connection = freeConnections.take();
                 activeConnections.put(connection);

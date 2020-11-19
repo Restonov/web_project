@@ -1,5 +1,6 @@
 package by.restonov.tyrent.model.dao;
 
+import by.restonov.tyrent.model.entity.ApplicationEntity;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.model.pool.ConnectionPool;
 
@@ -18,7 +19,7 @@ public class EntityTransaction {
      *
      * @param dao App Dao
      */
-    public void initSingleQuery(AbstractDao dao) {
+    public void initSingleQuery(AbstractDao<Long, ? extends ApplicationEntity> dao) {
         if (connection == null) {
             connection = ConnectionPool.INSTANCE.provideConnection();
             dao.setConnection(connection);
@@ -41,16 +42,17 @@ public class EntityTransaction {
      * for manual commit
      *
      * @param dao App Dao
-     * @param daos one more App Dao
+     * @param anotherDao one more App Dao
      * @throws DaoException - general Exception of Dao layer
      */
-    public void initMultipleQueries(AbstractDao dao, AbstractDao... daos) throws DaoException{
+    @SafeVarargs
+    public final void initMultipleQueries(AbstractDao<Long, ? extends ApplicationEntity> dao, AbstractDao<Long, ? extends ApplicationEntity>... anotherDao) throws DaoException{
         if (connection == null) {
             try {
                 connection = ConnectionPool.INSTANCE.provideConnection();
                 connection.setAutoCommit(false);
                 dao.setConnection(connection);
-                for (AbstractDao daoElement : daos) {
+                for (AbstractDao<Long, ? extends ApplicationEntity> daoElement : anotherDao) {
                     daoElement.setConnection(connection);
                 }
             } catch (SQLException e) {

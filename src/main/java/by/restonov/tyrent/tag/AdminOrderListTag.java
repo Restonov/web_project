@@ -1,7 +1,6 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.entity.impl.UserOrder;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.UserOrderService;
 import by.restonov.tyrent.util.DataTimeFormatter;
@@ -9,7 +8,6 @@ import by.restonov.tyrent.util.DataTimeFormatter;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**

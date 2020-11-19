@@ -8,7 +8,7 @@
     <link href="${pageContext.request.contextPath}/css/modal.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<jsp:useBean id="user" scope="request" type="by.restonov.tyrent.model.entity.User"/>
+<jsp:useBean id="user" scope="request" type="by.restonov.tyrent.model.entity.impl.User"/>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
 
 <div class="container" style="margin-top: 40px">

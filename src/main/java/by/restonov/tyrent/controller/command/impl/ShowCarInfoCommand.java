@@ -1,7 +1,7 @@
 package by.restonov.tyrent.controller.command.impl;
 
 import by.restonov.tyrent.controller.command.ActionCommand;
-import by.restonov.tyrent.model.entity.Car;
+import by.restonov.tyrent.model.entity.impl.Car;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageName;

@@ -1,10 +1,8 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.model.entity.Incident;
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.Incident;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.IncidentService;
-import by.restonov.tyrent.model.service.UserService;
 
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;

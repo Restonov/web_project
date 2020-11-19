@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.service.builder;
 
-import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.entity.impl.UserOrder;
 import by.restonov.tyrent.util.UserOrderIdGenerator;
 
 import java.time.LocalDateTime;

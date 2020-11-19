@@ -1,7 +1,7 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.model.entity.User;
-import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.entity.impl.User;
+import by.restonov.tyrent.model.entity.impl.UserOrder;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.UserOrderService;
 import by.restonov.tyrent.util.DataTimeFormatter;

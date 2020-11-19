@@ -1,7 +1,7 @@
 package by.restonov.tyrent.model.dao.builder;
 
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.Incident;
+import by.restonov.tyrent.model.entity.impl.Incident;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

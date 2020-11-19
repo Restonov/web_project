@@ -1,7 +1,7 @@
 package by.restonov.tyrent.model.service.builder;
 
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 
 import java.util.Map;
 

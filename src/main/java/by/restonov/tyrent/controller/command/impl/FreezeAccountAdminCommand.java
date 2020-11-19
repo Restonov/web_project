@@ -3,7 +3,7 @@ package by.restonov.tyrent.controller.command.impl;
 import by.restonov.tyrent.controller.command.ActionCommand;
 import by.restonov.tyrent.manager.PageName;
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.UserService;
 import org.apache.logging.log4j.LogManager;

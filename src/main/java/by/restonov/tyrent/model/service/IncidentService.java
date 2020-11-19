@@ -3,7 +3,7 @@ package by.restonov.tyrent.model.service;
 import by.restonov.tyrent.manager.ParameterName;
 import by.restonov.tyrent.model.dao.EntityTransaction;
 import by.restonov.tyrent.model.dao.impl.IncidentDaoImpl;
-import by.restonov.tyrent.model.entity.Incident;
+import by.restonov.tyrent.model.entity.impl.Incident;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.builder.IncidentBuilder;

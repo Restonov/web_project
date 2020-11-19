@@ -16,8 +16,6 @@ public class MailSender {
     private static final String BODY_COMMAND = "&command=activate_account";
     private static final String CONTENT = "text/html";
     private MimeMessage message;
-    private String sendToEmail = ParameterName.SEND_TO_EMAIL;
-    private String mailSubject = ParameterName.MAIL_SUBJECT;
     private String mailBody;
 
     public void send(String userEmail, String encryptedLogin) throws MessagingException {
@@ -37,8 +35,10 @@ public class MailSender {
         Session mailSession = factory.createSession();
         mailSession.setDebug(true);
         message = new MimeMessage(mailSession);
-            message.setSubject(mailSubject);
+        String mailSubject = ParameterName.MAIL_SUBJECT;
+        message.setSubject(mailSubject);
             message.setContent(mailBody, CONTENT);
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(sendToEmail));
+        String sendToEmail = ParameterName.SEND_TO_EMAIL;
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(sendToEmail));
     }
 }

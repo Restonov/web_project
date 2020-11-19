@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao;
 
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 import by.restonov.tyrent.model.exception.DaoException;
 
 import java.util.Optional;

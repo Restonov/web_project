@@ -13,5 +13,4 @@ public class XssAttackInterceptorTest extends Assert {
         String expected = "alert";
         AssertJUnit.assertEquals(expected, actual);
     }
-
 }

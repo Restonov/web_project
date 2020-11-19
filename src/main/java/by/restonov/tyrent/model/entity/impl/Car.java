@@ -1,4 +1,6 @@
-package by.restonov.tyrent.model.entity;
+package by.restonov.tyrent.model.entity.impl;
+
+import by.restonov.tyrent.model.entity.ApplicationEntity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -7,7 +9,7 @@ import java.math.BigDecimal;
 /**
  * Class of Car type
  */
-public class Car implements Serializable {
+public class Car extends ApplicationEntity implements Serializable {
     private long carId;
     private String name;
     private BigDecimal cost;

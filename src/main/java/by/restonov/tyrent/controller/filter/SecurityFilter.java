@@ -4,7 +4,7 @@ import by.restonov.tyrent.controller.command.CommandType;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageName;
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

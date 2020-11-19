@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao.impl;
 
-import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.entity.impl.UserOrder;
 import by.restonov.tyrent.model.dao.builder.UserOrderDaoBuilder;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.model.dao.AbstractDao;
@@ -64,11 +64,6 @@ public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements Us
     }
 
     @Override
-    public Optional<UserOrder> findByName(String name) throws DaoException {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public boolean add(UserOrder order) throws DaoException {
         boolean result = false;
         if (order != null) {
@@ -111,8 +106,8 @@ public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements Us
     }
 
     @Override
-    public boolean delete(Long id) throws DaoException {
-        return false;
+    public boolean delete(Long id) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

@@ -7,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:useBean id="user" scope="session" type="by.restonov.tyrent.model.entity.User"/>
+<jsp:useBean id="user" scope="session" type="by.restonov.tyrent.model.entity.impl.User"/>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
 
 <c:if test="${user.state.toString() != 'ACTIVATED'}">

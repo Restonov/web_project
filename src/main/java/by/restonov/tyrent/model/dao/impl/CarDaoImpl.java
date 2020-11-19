@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao.impl;
 
-import by.restonov.tyrent.model.entity.Car;
+import by.restonov.tyrent.model.entity.impl.Car;
 import by.restonov.tyrent.model.dao.builder.CarDaoBuilder;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.model.dao.AbstractDao;
@@ -68,7 +68,7 @@ public class CarDaoImpl extends AbstractDao<Long, Car> implements CarDao {
     }
 
     @Override
-    public Optional<Car> findByName(String name) throws DaoException {
+    public Optional<Car> findCarByName(String name) throws DaoException {
         Optional<Car> optionalCar = Optional.empty();
         CarDaoBuilder builder = CarDaoBuilder.INSTANCE;
         ResultSet resultSet = null;

@@ -44,7 +44,7 @@
                                 <fmt:message key="main.tyrent.info.sign"/>
                             </p>
                             <p>
-                                <%--@elvariable id="user" type="by.restonov.tyrent.model.entity.User"--%>
+                                <%--@elvariable id="user" type="by.restonov.tyrent.model.entity.impl.User"--%>
                                     <c:if test="${user == null}">
                                         <form action="controller" method="get">
                                             <input type="submit" class="btn btn-lg btn-primary" value="<fmt:message key="main.button.sign.up"/>"/>

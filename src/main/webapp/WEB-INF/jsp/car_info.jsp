@@ -9,7 +9,7 @@
 </head>
 <body>
     <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
-    <jsp:useBean id="car" scope="request" type="by.restonov.tyrent.model.entity.Car"/>
+    <jsp:useBean id="car" scope="request" type="by.restonov.tyrent.model.entity.impl.Car"/>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background-size: cover; background: url(${pageContext.request.contextPath}${car.imageBig}) no-repeat center;">
         <div class="col-md-5 p-lg-5 mx-auto my-5" style="left: -420px">
         <h1 class="display-4 font-weight-normal" style="left: auto; position: relative; right: 0; float: none; text-align: center; margin-right: auto;">${car.name}<br></h1>

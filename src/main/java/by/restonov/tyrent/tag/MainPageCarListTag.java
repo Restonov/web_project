@@ -2,7 +2,7 @@ package by.restonov.tyrent.tag;
 
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageContentManager;
-import by.restonov.tyrent.model.entity.Car;
+import by.restonov.tyrent.model.entity.impl.Car;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.model.service.CarService;
 

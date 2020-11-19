@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao.impl;
 
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 import by.restonov.tyrent.model.dao.builder.UserDaoBuilder;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.manager.ParameterName;
@@ -30,11 +30,6 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     private static final String UPDATE_PASSWORD = "UPDATE users SET user_password = ? WHERE user_login = ?";
     private static final String UPDATE_USER = "UPDATE users SET user_first_name = ?, user_last_name = ?, user_login = ?, user_email = ?, user_phone = ?, user_state = ?::user_state, user_role = ?::user_role WHERE user_id = ?";
     private static final String DELETE_USER = "DELETE FROM users WHERE user_id = ?";
-
-    @Override
-    public Optional<User> findByName(String name) {
-        throw new UnsupportedOperationException();
-    }
 
     @Override
     public Optional<User> findUserByLogin(String login) throws DaoException {
@@ -131,13 +126,7 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
         boolean result = false;
         if (user != null) {
             try(PreparedStatement statement = connection.prepareStatement(INSERT_NEW_USER)){
-                statement.setString(1, user.getFirstName());
-                statement.setString(2, user.getLastName());
-                statement.setString(3, user.getLogin());
-                statement.setString(4, user.getEmail());
-                statement.setString(5, user.getPhone());
-                statement.setString(6, user.getState().toString());
-                statement.setString(7, user.getRole().toString());
+                setStatementForUser(statement, user);
                 statement.executeUpdate();
                 result = true;
                 logger.info("User: {} successfully added to database", user.getLogin());
@@ -187,14 +176,7 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
         boolean result = false;
         if (user != null) {
             try (PreparedStatement statement = connection.prepareStatement(UPDATE_USER)) {
-                statement.setString(1, user.getFirstName());
-                statement.setString(2, user.getLastName());
-                statement.setString(3, user.getLogin());
-                statement.setString(4, user.getEmail());
-                statement.setString(5, user.getPhone());
-                statement.setString(6, user.getState().toString());
-                statement.setString(7, user.getRole().toString());
-                statement.setLong(8, user.getId());
+                setStatementForUser(statement, user);
                 statement.executeUpdate();
                 result = true;
                 logger.info("User successfully updated");
@@ -218,5 +200,16 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
             }
         }
         return result;
+    }
+
+    private void setStatementForUser(PreparedStatement statement, User user) throws SQLException {
+        statement.setString(1, user.getFirstName());
+        statement.setString(2, user.getLastName());
+        statement.setString(3, user.getLogin());
+        statement.setString(4, user.getEmail());
+        statement.setString(5, user.getPhone());
+        statement.setString(6, user.getState().toString());
+        statement.setString(7, user.getRole().toString());
+        statement.setLong(8, user.getId());
     }
 }

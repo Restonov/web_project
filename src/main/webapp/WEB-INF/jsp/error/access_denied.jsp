@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
 <section id="wrapper" class="container-fluid" style="margin-top: 100px">
     <div class="error-box">
         <div class="error-body text-center">

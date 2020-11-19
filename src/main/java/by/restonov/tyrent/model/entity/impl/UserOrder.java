@@ -1,4 +1,6 @@
-package by.restonov.tyrent.model.entity;
+package by.restonov.tyrent.model.entity.impl;
+
+import by.restonov.tyrent.model.entity.ApplicationEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -7,7 +9,7 @@ import java.time.LocalDateTime;
 /**
  * Class of User order type
  */
-public class UserOrder {
+public class UserOrder extends ApplicationEntity {
     private long orderId;
     private long carId;
     private long userId;

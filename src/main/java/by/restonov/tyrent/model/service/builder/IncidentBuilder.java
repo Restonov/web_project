@@ -1,11 +1,10 @@
 package by.restonov.tyrent.model.service.builder;
 
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.Incident;
+import by.restonov.tyrent.model.entity.impl.Incident;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-
 
 /**
  * Reported Incident builder

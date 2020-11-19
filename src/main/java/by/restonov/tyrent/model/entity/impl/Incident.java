@@ -1,12 +1,14 @@
-package by.restonov.tyrent.model.entity;
+package by.restonov.tyrent.model.entity.impl;
 
+
+import by.restonov.tyrent.model.entity.ApplicationEntity;
 
 import java.time.LocalDateTime;
 
 /**
  * The type Incident.
  */
-public class Incident {
+public class Incident extends ApplicationEntity {
     private long incidentId;
     private String incidentDescription;
     private long carId;

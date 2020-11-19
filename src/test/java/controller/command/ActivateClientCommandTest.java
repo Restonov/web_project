@@ -5,7 +5,7 @@ import by.restonov.tyrent.controller.command.impl.ActivateAccountCommand;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageName;
 import by.restonov.tyrent.manager.ParameterName;
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;

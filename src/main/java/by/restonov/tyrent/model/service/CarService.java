@@ -1,7 +1,7 @@
 package by.restonov.tyrent.model.service;
 
-import by.restonov.tyrent.model.entity.Car;
-import by.restonov.tyrent.model.entity.UserOrder;
+import by.restonov.tyrent.model.entity.impl.Car;
+import by.restonov.tyrent.model.entity.impl.UserOrder;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.model.exception.ServiceException;
 import by.restonov.tyrent.manager.AttributeName;
@@ -98,7 +98,7 @@ public class CarService {
         EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
-            optionalCar = dao.findByName(carName);
+            optionalCar = dao.findCarByName(carName);
         } catch (DaoException e) {
             throw new ServiceException("Error while finding car by name", e);
         } finally {

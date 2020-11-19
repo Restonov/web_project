@@ -1,6 +1,6 @@
 package by.restonov.tyrent.tag;
 
-import by.restonov.tyrent.model.entity.User;
+import by.restonov.tyrent.model.entity.impl.User;
 import by.restonov.tyrent.manager.AttributeName;
 import by.restonov.tyrent.manager.PageContentManager;
 

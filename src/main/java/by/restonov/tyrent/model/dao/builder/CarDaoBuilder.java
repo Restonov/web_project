@@ -1,6 +1,6 @@
 package by.restonov.tyrent.model.dao.builder;
 
-import by.restonov.tyrent.model.entity.Car;
+import by.restonov.tyrent.model.entity.impl.Car;
 import by.restonov.tyrent.manager.ParameterName;
 
 import java.math.BigDecimal;

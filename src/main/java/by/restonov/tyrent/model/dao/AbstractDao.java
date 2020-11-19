@@ -34,15 +34,6 @@ public abstract class AbstractDao <K, T>{
     public abstract Optional<T> findById(K id) throws DaoException;
 
     /**
-     * find Entity by it's name
-     *
-     * @param name Entity name
-     * @return Optional of Entity type
-     * @throws DaoException - general Exception of Dao layer
-     */
-    public abstract Optional<T> findByName(String name) throws DaoException;
-
-    /**
      * add Entity to DB
      *
      * @param entity Entity

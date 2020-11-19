@@ -247,8 +247,7 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public void setClientInfo(Properties properties) throws SQLClientInfoException {
-
+    public void setClientInfo(Properties properties) {
     }
 
     @Override
@@ -307,8 +306,8 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public boolean setShardingKeyIfValid(ShardingKey shardingKey, ShardingKey superShardingKey, int timeout) throws SQLException {
-        return setShardingKeyIfValid(shardingKey, superShardingKey, timeout);
+    public boolean setShardingKeyIfValid(ShardingKey shardingKey, ShardingKey superShardingKey, int timeout) throws SQLFeatureNotSupportedException {
+        throw new SQLFeatureNotSupportedException("setShardingKeyIfValid not implemented");
     }
 
     @Override

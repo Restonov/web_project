@@ -7,12 +7,13 @@
 
 # TyRent – car rental service
 The app is designed to help users book cars from the available car list. In addition to base functional, there are some extra-features such as:
-•	Adding salt to password hashing
-•	Registration with email
-•	Client, server JS validation
-•	Custom functions in the data base
-•	Interface designed with Bootstrap and CSS.
-
+<ul>
+<li>Adding salt to password hashing</li>
+<li>Registration with email</li>
+<li>Client, server JS validation</li>
+<li>Pagination</li>
+<li>Interface designed with Bootstrap and CSS</li>
+</ul>
 
 # Business use case
 

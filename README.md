@@ -35,7 +35,7 @@ The app is designed to help users book cars from the available car list. In addi
 <h3>Client`s scope</h3>
 <ul>
 <li>Browse profile info</li>
-<li>Delete account</li>
+<li>Delete (freeze) account</li>
 <li>Browse available cars info</li>
 <li>Book a car - make order</li>
 <li>Browse order list</li>
@@ -43,13 +43,13 @@ The app is designed to help users book cars from the available car list. In addi
 
 <h3>Administrator`s scope</h3>
 <ul>
-<li>Browse profile info</li>
 <li>Browse orders list</li>
 <li>Browse cars list</li>
 <li>Browse users list</li>
 <li>Browse incident list</li>
+<li>Browse client profile info</li>
 <li>Change order state</li>
 <li>Change client state</li>
-<li>Delete incident</li>  
+<li>Report incident and delete it</li>  
 </ul>
 

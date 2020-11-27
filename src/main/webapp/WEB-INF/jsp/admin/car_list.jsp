@@ -9,9 +9,15 @@
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#carTable').DataTable();
+    } );
+</script>
 
-<div style="margin-bottom: 30px">
-<table class="table" style="margin-top: 30px">
+<table class="display" id="carTable" style="margin-top: 30px; width: 100%">
     <thead>
     <tr>
         <th>id</th>
@@ -26,7 +32,6 @@
     <ctg:car_list/>
     </tbody>
 </table>
-</div>
 <c:import url="/WEB-INF/jsp/common/footer.jsp" charEncoding="utf-8"/>
 </body>
 </html>

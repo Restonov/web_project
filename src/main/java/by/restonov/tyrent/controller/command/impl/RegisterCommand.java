@@ -57,7 +57,7 @@ public class RegisterCommand implements ActionCommand {
                 Optional<User> optionalUser = service.registerNewUserAndGet(userData, password);
                 if (optionalUser.isPresent()) {
                     User user = optionalUser.get();
-                    service.sendActivationEmail(user.getEmail(), user.getLogin());
+                   // service.sendActivationEmail(user.getEmail(), user.getLogin());
                     HttpSession session = request.getSession();
                     session.setAttribute(AttributeName.USER, user);
                     request.setAttribute(AttributeName.WELCOME_MESSAGE, true);

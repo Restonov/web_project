@@ -19,7 +19,7 @@ public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements Us
     private static final String INSERT_NEW_ORDER = "INSERT INTO orders (order_id, car_id, user_id, order_timestamp, order_state) VALUES (?, ?, ?, ?, ?::order_state)";
     private static final String SELECT_ALL_ORDERS = "SELECT order_id, orders.car_id, user_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.car_id = cars.car_id ORDER BY order_state ASC";
     private static final String SELECT_ALL_ORDERS_BY_USER_ID = "SELECT order_id, orders.car_id, user_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.car_id = cars.car_id WHERE user_id = ? ORDER BY order_state ASC";
-    private static final String SELECT_ORDER_BY_ID = "SELECT order_id, orders.car_id, user_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.car_id = cars.car_id WHERE user_id = ?";
+    private static final String SELECT_ORDER_BY_ID = "SELECT order_id, orders.car_id, user_id, car_name, car_cost, order_timestamp, order_state FROM orders INNER JOIN cars ON orders.car_id = cars.car_id WHERE order_id = ?";
     private static final String UPDATE_ORDER = "UPDATE orders SET car_id = ?, user_id = ?, order_timestamp = ?, order_state = ?::order_state WHERE order_id = ?";
 
     @Override

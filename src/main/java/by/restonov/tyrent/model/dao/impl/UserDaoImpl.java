@@ -9,9 +9,7 @@ import by.restonov.tyrent.model.dao.UserDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -85,8 +83,8 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
         List<User> userList = new ArrayList<>();
         UserDaoBuilder builder = UserDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_USERS)){
-            resultSet = statement.executeQuery();
+        try (Statement statement = connection.createStatement()){
+            resultSet = statement.executeQuery(SELECT_ALL_USERS);
             while (resultSet.next()) {
                 User newUser = builder.build(resultSet);
                 userList.add(newUser);
@@ -177,6 +175,7 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
         if (user != null) {
             try (PreparedStatement statement = connection.prepareStatement(UPDATE_USER)) {
                 setStatementForUser(statement, user);
+                statement.setLong(8, user.getId());
                 statement.executeUpdate();
                 result = true;
                 logger.info("User successfully updated");
@@ -210,6 +209,5 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
         statement.setString(5, user.getPhone());
         statement.setString(6, user.getState().toString());
         statement.setString(7, user.getRole().toString());
-        statement.setLong(8, user.getId());
     }
 }

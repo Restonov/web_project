@@ -7,12 +7,13 @@
 
 # TyRent – car rental service
 The app is designed to help users book cars from the available car list. In addition to base functional, there are some extra-features such as:
-•	Adding salt to password hashing
-•	Registration with email
-•	Client, server JS validation
-•	Custom functions in the data base
-•	Interface designed with Bootstrap and CSS.
-
+<ul>
+<li>User password hashing</li>
+<li>Registration with email</li>
+<li>Client, server JS validation</li>
+<li>Pagination</li>
+<li>Interface designed with Bootstrap, CSS and JQuery</li>
+</ul>
 
 # Business use case
 
@@ -34,7 +35,7 @@ The app is designed to help users book cars from the available car list. In addi
 <h3>Client`s scope</h3>
 <ul>
 <li>Browse profile info</li>
-<li>Delete account</li>
+<li>Delete (freeze) account</li>
 <li>Browse available cars info</li>
 <li>Book a car - make order</li>
 <li>Browse order list</li>
@@ -42,13 +43,13 @@ The app is designed to help users book cars from the available car list. In addi
 
 <h3>Administrator`s scope</h3>
 <ul>
-<li>Browse profile info</li>
 <li>Browse orders list</li>
 <li>Browse cars list</li>
 <li>Browse users list</li>
 <li>Browse incident list</li>
+<li>Browse client profile info</li>
 <li>Change order state</li>
 <li>Change client state</li>
-<li>Delete incident</li>  
+<li>Report incident and delete it</li>  
 </ul>
 

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="ctg" uri="custom_tags" %>
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <script>
-                                    <c:import url="/js/modal.js" charEncoding="utf-8"/>
+                                    <c:import url="/js/modal.js" charEncoding="UTF-8"/>
                                 </script>
                             </div>
                         </div>

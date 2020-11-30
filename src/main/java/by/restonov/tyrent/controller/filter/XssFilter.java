@@ -6,11 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 /**
  * Check if someone print <script> or <img> tags

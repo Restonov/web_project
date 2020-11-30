@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -13,7 +14,7 @@ import java.sql.Connection;
 public class ConnectionPoolTest extends Assert {
     Logger logger;
     ConnectionPool pool;
-
+    Connection connection;
 
     @BeforeClass
     public void setUp() {
@@ -22,13 +23,26 @@ public class ConnectionPoolTest extends Assert {
     }
 
     @AfterClass
-    public void tierDown() {
+    public void tearDown() {
         logger = null;
+        pool.shutdown();
         pool = null;
+        connection = null;
     }
 
     @Test
-    public void provideConnectionTest() throws InterruptedException {
+    public void provideConnectionPositiveTest() {
+        connection = pool.provideConnection();
+        Assert.assertNotNull(connection);
+    }
+
+    @AfterMethod
+    public void takeBackConnection() {
+        pool.takeBackConnection(connection);
+    }
+
+    @Test
+    public void provideConnectionEmulationTest() throws InterruptedException {
         int clients = 20;
         logger.info("Max pool size = {}", ConnectionPool.MAX_POOL_SIZE);
         logger.info("Attempt to start {} clients at the same time", clients);

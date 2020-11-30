@@ -45,14 +45,13 @@ public class EntityTransaction {
      * @param anotherDao one more App Dao
      * @throws DaoException - general Exception of Dao layer
      */
-    @SafeVarargs
-    public final void initMultipleQueries(AbstractDao<Long, ? extends ApplicationEntity> dao, AbstractDao<Long, ? extends ApplicationEntity>... anotherDao) throws DaoException{
+    public void initMultipleQueries(AbstractDao<Long, ? extends ApplicationEntity> dao, AbstractDao<?,?>... anotherDao) throws DaoException{
         if (connection == null) {
             try {
                 connection = ConnectionPool.INSTANCE.provideConnection();
                 connection.setAutoCommit(false);
                 dao.setConnection(connection);
-                for (AbstractDao<Long, ? extends ApplicationEntity> daoElement : anotherDao) {
+                for (AbstractDao<?, ?> daoElement : anotherDao) {
                     daoElement.setConnection(connection);
                 }
             } catch (SQLException e) {

@@ -19,6 +19,31 @@ import java.util.*;
  * Service, that works with user data
  */
 public class UserService {
+    private UserDaoImpl dao;
+    private EntityTransaction transaction;
+    private UserBuilder builder;
+
+    /**
+     * Default init constructor
+     *
+     */
+    public UserService() {
+        this.dao = new UserDaoImpl();
+        this.transaction = new EntityTransaction();
+        this.builder = UserBuilder.INSTANCE;
+    }
+
+    /**
+     * Constructor with dao and transaction params
+     *
+     * @param dao UserDao
+     * @param transaction EntityTransaction
+     */
+    public UserService(UserDaoImpl dao, EntityTransaction transaction, UserBuilder builder) {
+        this.dao = dao;
+        this.transaction = transaction;
+        this.builder = builder;
+    }
 
     /**
      * Validate new user data and password
@@ -65,40 +90,42 @@ public class UserService {
      * @param userPassword user password
      * @return Optional of User type
      * @throws ServiceException default exception of service layer
-     * @see #checkUserNotExists(Map userData)
      * @see DataEncryptor
      */
     public Optional<User> registerNewUserAndGet(Map<String, String> userData, String userPassword) throws ServiceException {
         Optional<User> optionalUser;
-        if (checkUserNotExists(userData)) {
-            EntityTransaction transaction = new EntityTransaction();
-            try {
-                UserDaoImpl dao = new UserDaoImpl();
-                transaction.initMultipleQueries(dao);
-                UserBuilder builder = UserBuilder.INSTANCE;
+        String userLogin = userData.get(ParameterName.USER_LOGIN);
+        String userEmail = userData.get(ParameterName.USER_EMAIL);
+        Optional<User> userWithSameLogin;
+        Optional<User> userWithSameEmail;
+        try {
+            transaction.initMultipleQueries(dao);
+            userWithSameLogin = dao.findUserByLogin(userLogin);
+            userWithSameEmail = dao.findUserByEmail(userEmail);
+            if(userWithSameLogin.isEmpty() && userWithSameEmail.isEmpty()) {
                 User user = builder.build(userData);
                 optionalUser = Optional.of(user);
                 DataEncryptor authentication = new DataEncryptor();
                 String hashedPassword = authentication.encrypt(userPassword.toCharArray());
                 dao.add(user);
                 dao.addUserPassword(user, hashedPassword);
-                transaction.commit();
-            } catch (DaoException e) {
-                try {
-                    transaction.rollback();
-                } catch (DaoException daoException) {
-                    throw new ServiceException("Error rollback transaction", e);
-                }
-                throw new ServiceException("Error registering new User", e);
-            } finally {
-                try {
-                    transaction.endMultipleQueries();
-                } catch (DaoException e) {
-                    e.printStackTrace();
-                }
+            } else {
+                optionalUser = Optional.empty();
             }
-        } else {
-            optionalUser = Optional.empty();
+            transaction.commit();
+        } catch (DaoException e) {
+            try {
+                transaction.rollback();
+            } catch (DaoException daoException) {
+                throw new ServiceException("Error rollback transaction", e);
+            }
+            throw new ServiceException("Register new user - error", e);
+        } finally {
+            try {
+                transaction.endMultipleQueries();
+            } catch (DaoException e) {
+                e.printStackTrace();
+            }
         }
         return optionalUser;
     }
@@ -116,10 +143,8 @@ public class UserService {
      */
     public boolean checkUserLoginAndPassword(String enteredLogin, String enteredPassword) throws ServiceException {
         boolean checkResult = false;
-        UserDaoImpl dao = new UserDaoImpl();
         DataEncryptor authentication = new DataEncryptor();
         Optional<String> optionalPassword;
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             optionalPassword = dao.findPasswordByLogin(enteredLogin);
@@ -144,8 +169,6 @@ public class UserService {
      */
     public Optional<User> findUserByLogin(String login) throws ServiceException {
         Optional<User> optionalUser;
-        UserDaoImpl dao = new UserDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             optionalUser = dao.findUserByLogin(login);
@@ -169,8 +192,6 @@ public class UserService {
      */
     public Optional<User> findUserById(long id) throws ServiceException {
         Optional<User> optionalUser;
-        UserDaoImpl dao = new UserDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             optionalUser = dao.findById(id);
@@ -191,8 +212,6 @@ public class UserService {
      */
     public Optional<User> findUserByEmail(String email) throws ServiceException {
         Optional<User> optionalUser;
-        UserDaoImpl dao = new UserDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             optionalUser = dao.findUserByEmail(email);
@@ -212,8 +231,6 @@ public class UserService {
      */
     public List<User> findUserList() throws ServiceException {
         List<User> userList;
-        UserDaoImpl dao = new UserDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             userList = dao.findAll();
@@ -276,8 +293,6 @@ public class UserService {
      * @throws ServiceException default exception of service layer
      */
     public void updateUser(User user) throws ServiceException {
-        UserDaoImpl dao = new UserDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             dao.update(user);
@@ -299,40 +314,6 @@ public class UserService {
     public void changeUserState(User user, User.State userState) throws ServiceException {
         user.setState(userState);
         updateUser(user);
-    }
-
-    /**
-     * Check if user with that login and/or email already
-     * exists in DB
-     *
-     * @param userData the user data
-     * @return check result
-     * @throws ServiceException default exception of service layer
-     */
-    private boolean checkUserNotExists(Map<String, String> userData) throws ServiceException {
-        boolean userNotExists;
-        UserDaoImpl dao = new UserDaoImpl();
-        String userLogin = userData.get(ParameterName.USER_LOGIN);
-        String userEmail = userData.get(ParameterName.USER_EMAIL);
-        Optional<User> userWithSameLogin;
-        Optional<User> userWithSameEmail;
-        EntityTransaction transaction = new EntityTransaction();
-        try {
-            transaction.initMultipleQueries(dao);
-            userWithSameLogin = dao.findUserByLogin(userLogin);
-            userWithSameEmail = dao.findUserByEmail(userEmail);
-            transaction.commit();
-            userNotExists = userWithSameLogin.isEmpty() && userWithSameEmail.isEmpty();
-        } catch (DaoException e) {
-            throw new ServiceException("Checking if user exists error", e);
-        } finally {
-            try {
-                transaction.endMultipleQueries();
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-        }
-        return userNotExists;
     }
 }
 

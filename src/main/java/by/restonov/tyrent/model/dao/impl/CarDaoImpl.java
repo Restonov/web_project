@@ -4,7 +4,6 @@ import by.restonov.tyrent.model.entity.impl.Car;
 import by.restonov.tyrent.model.dao.builder.CarDaoBuilder;
 import by.restonov.tyrent.model.exception.DaoException;
 import by.restonov.tyrent.model.dao.AbstractDao;
-import by.restonov.tyrent.model.dao.CarDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,10 +18,9 @@ import java.util.Optional;
 /**
  * DAO Interaction with DB "cars" table
  */
-public class CarDaoImpl extends AbstractDao<Long, Car> implements CarDao {
+public class CarDaoImpl extends AbstractDao<Long, Car> {
     private static final Logger logger = LogManager.getLogger();
     private static final String SELECT_ALL_CARS= "SELECT car_id, car_name, car_cost, car_description_eng, car_description_rus, car_image_big, car_image_mini, car_image_cabin, car_state FROM cars";
-    private static final String SELECT_CAR_BY_NAME= "SELECT car_id, car_name, car_cost, car_description_eng, car_description_rus, car_image_big, car_image_mini, car_image_cabin, car_state FROM cars WHERE car_name = ?";
     private static final String SELECT_CAR_BY_ID= "SELECT car_id, car_name, car_cost, car_description_eng, car_description_rus, car_image_big, car_image_mini, car_image_cabin, car_state FROM cars WHERE car_id = ?";
     private static final String UPDATE_CAR = "UPDATE cars SET car_name = ?, car_cost = ?, car_description_eng = ?, car_description_rus = ?, car_image_big = ?, car_image_mini = ?, car_image_cabin = ?, car_state = ?::car_state WHERE car_id = ?";
 
@@ -60,27 +58,6 @@ public class CarDaoImpl extends AbstractDao<Long, Car> implements CarDao {
             }
         } catch (SQLException e) {
             throw new DaoException("Error while finding car by id", e);
-        } finally {
-            assert resultSet != null;
-            closeResultSet(resultSet);
-        }
-        return optionalCar;
-    }
-
-    @Override
-    public Optional<Car> findCarByName(String name) throws DaoException {
-        Optional<Car> optionalCar = Optional.empty();
-        CarDaoBuilder builder = CarDaoBuilder.INSTANCE;
-        ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_CAR_BY_NAME)){
-            statement.setString(1, name);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                Car car = builder.build(resultSet);
-                optionalCar = Optional.of(car);
-            }
-        } catch (SQLException e) {
-            throw new DaoException("Error while finding car by name", e);
         } finally {
             assert resultSet != null;
             closeResultSet(resultSet);

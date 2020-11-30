@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Reported Incident builder
  */
-public enum IncidentBuilder {
+public enum IncidentBuilder{
 
     /**
      * Thread-safe singleton instance

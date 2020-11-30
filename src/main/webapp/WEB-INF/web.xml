@@ -31,9 +31,7 @@
     <filter-mapping>
         <filter-name>XssFilter</filter-name>
         <url-pattern>/*</url-pattern>
-
     </filter-mapping>
-
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.restonov.tyrent.controller.filter.EncodingFilter</filter-class>
@@ -42,7 +40,6 @@
         <filter-name>EncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     <filter>
         <filter-name>LocaleFilter</filter-name>
         <filter-class>by.restonov.tyrent.controller.filter.LocaleFilter</filter-class>
@@ -51,7 +48,6 @@
         <filter-name>LocaleFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     <filter>
         <filter-name>SecurityFilter</filter-name>
         <filter-class>by.restonov.tyrent.controller.filter.SecurityFilter</filter-class>
@@ -60,7 +56,6 @@
         <filter-name>SecurityFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     <filter>
         <filter-name>AdministratorFilter</filter-name>
         <filter-class>by.restonov.tyrent.controller.filter.AdministratorFilter</filter-class>

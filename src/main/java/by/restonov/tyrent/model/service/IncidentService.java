@@ -16,6 +16,21 @@ import java.util.Map;
  * Service, that works with incident data
  */
 public class IncidentService {
+    private IncidentDaoImpl dao;
+    private EntityTransaction transaction;
+    private IncidentBuilder builder;
+
+    public IncidentService() {
+        dao = new IncidentDaoImpl();
+        transaction = new EntityTransaction();
+        builder = IncidentBuilder.INSTANCE;
+    }
+
+    public IncidentService(IncidentDaoImpl dao, EntityTransaction transaction, IncidentBuilder builder) {
+        this.dao = dao;
+        this.transaction = transaction;
+        this.builder = builder;
+    }
 
     /**
      * Adding new Incident to DB
@@ -29,11 +44,7 @@ public class IncidentService {
         String xssUncheckedText = incidentData.get(ParameterName.INCIDENT_DESCRIPTION);
         String xssCheckedText = XssAttackInterceptor.checkTextAndGet(xssUncheckedText);
         incidentData.put(ParameterName.INCIDENT_DESCRIPTION, xssCheckedText);
-
-        IncidentBuilder builder = IncidentBuilder.INSTANCE;
         Incident incident = builder.build(incidentData);
-        IncidentDaoImpl dao = new IncidentDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             result = dao.add(incident);
@@ -53,8 +64,6 @@ public class IncidentService {
      */
     public List<Incident> findIncidentList() throws ServiceException {
         List<Incident> incidentList;
-        IncidentDaoImpl dao = new IncidentDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             incidentList = dao.findAll();
@@ -75,8 +84,6 @@ public class IncidentService {
      */
     public boolean deleteIncident(long incidentId) throws ServiceException {
         boolean result;
-        IncidentDaoImpl dao = new IncidentDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             result = dao.delete(incidentId);

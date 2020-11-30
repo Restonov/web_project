@@ -15,6 +15,21 @@ import java.util.Optional;
  * Service, that works with order data
  */
 public class UserOrderService {
+    private UserOrderDaoImpl dao;
+    private EntityTransaction transaction;
+    private UserOrderBuilder builder;
+
+    public UserOrderService() {
+        this.dao = new UserOrderDaoImpl();
+        this.transaction = new EntityTransaction();
+        this.builder = UserOrderBuilder.INSTANCE;
+    }
+
+    public UserOrderService(UserOrderDaoImpl dao, EntityTransaction transaction, UserOrderBuilder builder) {
+        this.dao = dao;
+        this.transaction = transaction;
+        this.builder = builder;
+    }
 
     /**
      * Attach car_id and user_id
@@ -25,12 +40,9 @@ public class UserOrderService {
      * @throws ServiceException default exception of service layer
      */
     public void addOrder(long userId, long carId) throws ServiceException {
-        UserOrderBuilder builder = UserOrderBuilder.INSTANCE;
-        UserOrder order = builder.build(userId, carId);
-        UserOrderDaoImpl dao = new UserOrderDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
+            UserOrder order = builder.build(userId, carId);
             dao.add(order);
         } catch (DaoException e) {
             throw new ServiceException("Add order to database - error", e);
@@ -46,8 +58,6 @@ public class UserOrderService {
      * @throws ServiceException default exception of service layer
      */
     public void updateOrder(UserOrder order) throws ServiceException {
-        UserOrderDaoImpl dao = new UserOrderDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             dao.update(order);
@@ -66,8 +76,6 @@ public class UserOrderService {
      */
     public List<UserOrder> findOrderList() throws ServiceException {
         List<UserOrder> orderList;
-        UserOrderDaoImpl dao = new UserOrderDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             orderList = dao.findAll();
@@ -88,8 +96,6 @@ public class UserOrderService {
      */
     public Optional<List<UserOrder>> findOrderListByUserId(long userId) throws ServiceException {
         Optional<List<UserOrder>> optionalOrderList;
-        UserOrderDaoImpl dao = new UserOrderDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             optionalOrderList = dao.findOrderListByUserId(userId);
@@ -110,8 +116,6 @@ public class UserOrderService {
      */
     public Optional<UserOrder> findOrderById(long orderId) throws ServiceException {
         Optional<UserOrder> optionalOrder;
-        UserOrderDaoImpl dao = new UserOrderDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             optionalOrder = dao.findById(orderId);

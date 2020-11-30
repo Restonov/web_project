@@ -16,20 +16,20 @@ public class DataEncryptionTest extends Assert {
     }
 
     @AfterClass
-    public void tierDown() {
+    public void tearDown() {
         encryption = null;
     }
 
     @Test
     public void testEncrypt() {
-        String actual = encryption.encrypt("Restonov".toCharArray());;
+        String actual = encryption.encrypt("Restonov".toCharArray());
         String expected = "some salted hash";
         AssertJUnit.assertNotSame(expected, actual);
     }
 
     @Test
     public void testDecrypt() {
-        boolean actual = encryption.decrypt("123456".toCharArray(), "$31$16$VRYgLx4EdEFvcAlo6duK0JA8Th9pkjS4a5TxIiBj2fY");;
+        boolean actual = encryption.decrypt("123456".toCharArray(), "$31$16$VRYgLx4EdEFvcAlo6duK0JA8Th9pkjS4a5TxIiBj2fY");
         AssertJUnit.assertTrue(actual);
     }
 }

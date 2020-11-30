@@ -17,9 +17,10 @@ public interface UserDao {
      *
      * @param user - exists User in DB
      * @param password - User password
+     * @return operation result
      * @throws DaoException - general Exception of Dao layer
      */
-    void addUserPassword(User user, String password) throws DaoException;
+    boolean addUserPassword(User user, String password) throws DaoException;
 
     /**
      * find in DB User password by exists User login

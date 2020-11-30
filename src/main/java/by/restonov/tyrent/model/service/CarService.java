@@ -16,6 +16,28 @@ import java.util.Optional;
  * Service, that works with car data
  */
 public class CarService {
+    private CarDaoImpl dao;
+    private EntityTransaction transaction;
+
+    /**
+     * Default init constructor
+     *
+     */
+    public CarService() {
+        dao = new CarDaoImpl();
+        transaction = new EntityTransaction();
+    }
+
+    /**
+     * Constructor with params
+     *
+     * @param dao Car dao
+     * @param transaction Transaction
+     */
+    public CarService(CarDaoImpl dao, EntityTransaction transaction) {
+        this.dao = dao;
+        this.transaction = transaction;
+    }
 
     /**
      * Check if car state = AVAILABLE
@@ -72,8 +94,6 @@ public class CarService {
      */
     public List<Car> findCarList() throws ServiceException {
         List<Car> carList;
-        CarDaoImpl dao = new CarDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             carList = dao.findAll();
@@ -86,28 +106,6 @@ public class CarService {
     }
 
     /**
-     * Find car by name
-     *
-     * @param carName Name of the car
-     * @return Optional of Car type
-     * @throws ServiceException default exception of service layer
-     */
-    public Optional<Car> findCarByName(String carName) throws ServiceException {
-        Optional<Car> optionalCar;
-        CarDaoImpl dao = new CarDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
-        try {
-            transaction.initSingleQuery(dao);
-            optionalCar = dao.findCarByName(carName);
-        } catch (DaoException e) {
-            throw new ServiceException("Error while finding car by name", e);
-        } finally {
-            transaction.endSingleQuery();
-        }
-        return optionalCar;
-    }
-
-    /**
      * Find car by id
      *
      * @param carId Id of the car
@@ -116,8 +114,6 @@ public class CarService {
      */
     public Optional<Car> findCarById(long carId) throws ServiceException {
         Optional<Car> optionalCar;
-        CarDaoImpl dao = new CarDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             optionalCar = dao.findById(carId);
@@ -136,13 +132,11 @@ public class CarService {
      * @throws ServiceException default exception of service layer
      */
     public void updateCar(Car car) throws ServiceException {
-        CarDaoImpl dao = new CarDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
         try {
             transaction.initSingleQuery(dao);
             dao.update(car);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException("Error while update car", e);
         } finally {
             transaction.endSingleQuery();
         }

@@ -2,25 +2,21 @@ package util;
 
 import by.restonov.tyrent.util.MailSender;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import javax.mail.MessagingException;
 
 public class MailSenderTest extends Assert {
     MailSender sender;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         sender = new MailSender();
-
     }
 
-    @AfterClass
-    public void tierDown() {
+    @AfterMethod
+    public void tearDown() {
         sender = null;
-
     }
 
     @Test

@@ -1,0 +1,9 @@
+<suite name="TestSuite"  verbose="10"
+       object-factory="org.powermock.modules.testng.PowerMockObjectFactory">
+    <test name="AutoQA">
+        <classes>
+            <class name="model.service.UserServiceTest" />
+        </classes>
+    </test>
+</suite>
+

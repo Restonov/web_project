@@ -136,17 +136,20 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     }
 
     @Override
-    public void addUserPassword(User user, String password) throws DaoException {
+    public boolean addUserPassword(User user, String password) throws DaoException {
+        boolean result = false;
         if (user != null && password != null) {
             try(PreparedStatement statement = connection.prepareStatement(UPDATE_PASSWORD)){
                 statement.setString(1, password);
                 statement.setString(2, user.getLogin());
                 statement.executeUpdate();
+                result = true;
                 logger.info("User: {} password successfully added to database", user.getLogin());
             } catch (SQLException e) {
                 throw new DaoException("Error while adding password", e);
             }
         }
+        return result;
     }
 
     @Override

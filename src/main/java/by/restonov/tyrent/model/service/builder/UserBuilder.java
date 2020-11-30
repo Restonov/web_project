@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * User builder
  */
-public enum UserBuilder {
+public enum UserBuilder{
 
     /**
      * Thread-safe Singleton instance

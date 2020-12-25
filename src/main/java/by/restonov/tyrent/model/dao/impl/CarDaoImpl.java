@@ -27,11 +27,11 @@ public class CarDaoImpl extends AbstractDao<Long, Car> {
     @Override
     public List<Car> findAll() throws DaoException {
         List<Car> carList = new ArrayList<>();
-        CarDaoBuilder builder = CarDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_CARS)){
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
+                CarDaoBuilder builder = new CarDaoBuilder();
                 Car car = builder.build(resultSet);
                 carList.add(car);
             }
@@ -47,12 +47,12 @@ public class CarDaoImpl extends AbstractDao<Long, Car> {
     @Override
     public Optional<Car> findById(Long id) throws DaoException {
         Optional<Car> optionalCar = Optional.empty();
-        CarDaoBuilder builder = CarDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_CAR_BY_ID)){
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                CarDaoBuilder builder = new CarDaoBuilder();
                 Car car = builder.build(resultSet);
                 optionalCar = Optional.of(car);
             }

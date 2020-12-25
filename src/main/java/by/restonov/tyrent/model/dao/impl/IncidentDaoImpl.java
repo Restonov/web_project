@@ -25,7 +25,7 @@ public class IncidentDaoImpl extends AbstractDao<Long, Incident> {
     @Override
     public List<Incident> findAll() throws DaoException {
         List<Incident> incidentList = new ArrayList<>();
-        IncidentDaoBuilder builder = IncidentDaoBuilder.INSTANCE;
+        IncidentDaoBuilder builder = new IncidentDaoBuilder();
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_INCIDENTS)){
             resultSet = statement.executeQuery();

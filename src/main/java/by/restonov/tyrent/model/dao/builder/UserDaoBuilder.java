@@ -9,11 +9,8 @@ import java.sql.SQLException;
 /**
  * User builder
  */
-public enum UserDaoBuilder {
-    /**
-     * Thread-safe Singleton instance
-     */
-    INSTANCE;
+public class UserDaoBuilder {
+
 
     /**
      * Build User from ResultSet data

@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 public enum UserOrderBuilder {
 
     /**
-     * Thread-safe Singleton instance
+     * Thread-safe singleton
+     *
      */
     INSTANCE;
 

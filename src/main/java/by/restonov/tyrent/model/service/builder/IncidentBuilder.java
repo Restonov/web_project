@@ -12,7 +12,8 @@ import java.util.Map;
 public enum IncidentBuilder{
 
     /**
-     * Thread-safe singleton instance
+     * Thread-safe singleton
+     *
      */
     INSTANCE;
 

@@ -5,6 +5,9 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript">
+        <c:import url="/js/noRefresh.js"/>
+    </script>
 </head>
 <body>
 <jsp:useBean id="user" scope="session" type="by.restonov.tyrent.model.entity.impl.User"/>

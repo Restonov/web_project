@@ -21,7 +21,7 @@ public enum CommandType {
     MAKE_ORDER (new MakeOrderCommand()),
     ACTIVATE_ACCOUNT (new ActivateAccountCommand()),
     SHOW_USER_PROFILE (request -> PageName.USER_PROFILE_PAGE),
-    FREEZE_ACCOUNT (new FreezeAccountAdminCommand()),
+    FREEZE_ACCOUNT (new FreezeAccountCommand()),
 
     SHOW_USER_LIST (request -> PageName.USER_LIST_PAGE),
     SHOW_CAR_LIST (request -> PageName.CAR_LIST_PAGE),

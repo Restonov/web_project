@@ -19,12 +19,22 @@ public class UserOrderService {
     private EntityTransaction transaction;
     private UserOrderBuilder builder;
 
+    /**
+     * Default init constructor
+     *
+     */
     public UserOrderService() {
         this.dao = new UserOrderDaoImpl();
         this.transaction = new EntityTransaction();
         this.builder = UserOrderBuilder.INSTANCE;
     }
 
+    /**
+     * Constructor with dao and transaction params
+     *
+     * @param dao UserOrderDao
+     * @param transaction EntityTransaction
+     */
     public UserOrderService(UserOrderDaoImpl dao, EntityTransaction transaction, UserOrderBuilder builder) {
         this.dao = dao;
         this.transaction = transaction;

@@ -32,12 +32,12 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     @Override
     public Optional<User> findUserByLogin(String login) throws DaoException {
         Optional<User> optionalUser = Optional.empty();
-        UserDaoBuilder builder = UserDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_BY_LOGIN)){
             statement.setString(1, login);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                UserDaoBuilder builder = new UserDaoBuilder();
                 User user = builder.build(resultSet);
                 optionalUser = Optional.of(user);
             }
@@ -60,12 +60,12 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     @Override
     public Optional<User> findUserByEmail(String email) throws DaoException {
         Optional<User> optionalUser = Optional.empty();
-        UserDaoBuilder builder = UserDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_BY_EMAIL)){
             statement.setString(1, email);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                UserDaoBuilder builder = new UserDaoBuilder();
                 User newUser = builder.build(resultSet);
                 optionalUser = Optional.of(newUser);
             }
@@ -81,11 +81,11 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
     @Override
     public List<User> findAll() throws DaoException {
         List<User> userList = new ArrayList<>();
-        UserDaoBuilder builder = UserDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (Statement statement = connection.createStatement()){
             resultSet = statement.executeQuery(SELECT_ALL_USERS);
             while (resultSet.next()) {
+                UserDaoBuilder builder = new UserDaoBuilder();
                 User newUser = builder.build(resultSet);
                 userList.add(newUser);
             }
@@ -106,7 +106,7 @@ public class UserDaoImpl extends AbstractDao<Long, User> implements UserDao {
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                UserDaoBuilder builder = UserDaoBuilder.INSTANCE;
+                UserDaoBuilder builder = new UserDaoBuilder();
                 User user = builder.build(resultSet);
                 optionalUser = Optional.of(user);
             }

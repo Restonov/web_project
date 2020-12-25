@@ -6,6 +6,9 @@
 <head>
     <title><fmt:message key="profile.title"/></title>
     <link href="${pageContext.request.contextPath}/css/modal.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript">
+        <c:import url="/js/noRefresh.js"/>
+    </script>
 </head>
 <body>
 <jsp:useBean id="user" scope="request" type="by.restonov.tyrent.model.entity.impl.User"/>

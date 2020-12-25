@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-public class FreezeAccountAdminCommand implements ActionCommand {
+public class FreezeAccountCommand implements ActionCommand {
     private static final Logger logger = LogManager.getLogger();
     private UserService service = new UserService();
 

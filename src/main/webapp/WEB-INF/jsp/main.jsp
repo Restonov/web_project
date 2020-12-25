@@ -6,6 +6,9 @@
 <html>
 <head>
     <title>TyRent</title>
+    <script type="text/javascript">
+        <c:import url="/js/noRefresh.js"/>
+    </script>
 </head>
 <body>
     <%--Pages header--%>

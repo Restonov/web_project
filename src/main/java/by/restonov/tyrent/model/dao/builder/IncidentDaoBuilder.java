@@ -10,11 +10,7 @@ import java.time.LocalDateTime;
 /**
  * Incident builder
  */
-public enum IncidentDaoBuilder {
-    /**
-     * Thread-safe Singleton instance
-     */
-    INSTANCE;
+public class IncidentDaoBuilder {
 
     /**
      * Build Incident from ResultSet data

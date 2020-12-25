@@ -56,7 +56,7 @@ public class AdminUserListTag extends TagSupport {
         String currentState;
         if (user.getRole() != User.Role.ADMINISTRATOR) {
             StringBuilder userState = new StringBuilder();
-            userState.append("<form action=\"controller\" method=\"get\">")
+            userState.append("<form action=\"controller\" method=\"post\">")
                     .append("<p style=\"float: left\">")
                     .append("<select name=\"user_state\">")
                     .append("<option hidden>").append(user.getState().toString().toLowerCase()).append("</option>")

@@ -25,11 +25,11 @@ public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements Us
     @Override
     public List<UserOrder> findAll() throws DaoException {
         List<UserOrder> orderList = new ArrayList<>();
-        UserOrderDaoBuilder builder = UserOrderDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_ORDERS)){
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
+                UserOrderDaoBuilder builder = new UserOrderDaoBuilder();
                 UserOrder order = builder.build(resultSet);
                 orderList.add(order);
             }
@@ -45,12 +45,12 @@ public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements Us
     @Override
     public Optional<UserOrder> findById(Long id) throws DaoException {
         Optional<UserOrder> optionalUserOrder = Optional.empty();
-        UserOrderDaoBuilder builder = UserOrderDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ORDER_BY_ID)){
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                UserOrderDaoBuilder builder = new UserOrderDaoBuilder();
                 UserOrder order = builder.build(resultSet);
                 optionalUserOrder = Optional.of(order);
             }
@@ -114,12 +114,12 @@ public class UserOrderDaoImpl extends AbstractDao<Long, UserOrder> implements Us
     public Optional<List<UserOrder>> findOrderListByUserId(long userId) throws DaoException {
         Optional<List<UserOrder>> optionalOrderList;
         List<UserOrder> orderList = new ArrayList<>();
-        UserOrderDaoBuilder builder = UserOrderDaoBuilder.INSTANCE;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_ORDERS_BY_USER_ID)){
             statement.setLong(1, userId);
             resultSet = statement.executeQuery();
                 while (resultSet.next()) {
+                    UserOrderDaoBuilder builder = new UserOrderDaoBuilder();
                     UserOrder order = builder.build(resultSet);
                     orderList.add(order);
                 }

@@ -6,6 +6,9 @@
 <html>
 <head>
     <title><fmt:message key="admin.order.list"/></title>
+    <script type="text/javascript">
+        <c:import url="/js/noRefresh.js"/>
+    </script>
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>

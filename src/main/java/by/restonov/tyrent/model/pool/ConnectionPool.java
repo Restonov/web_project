@@ -85,10 +85,12 @@ public enum ConnectionPool {
      * wait for connection become available for closing
      */
     public void shutdown() {
-            for (int i = 0; i < freeConnections.size(); i++) {
+            for (int i = 0; i < MAX_POOL_SIZE; i++) {
                 try {
-                    ProxyConnection connection = freeConnections.take();
-                    connection.closeConnection();
+                    ProxyConnection freeConnection = freeConnections.take();
+                    ProxyConnection activeConnection = activeConnections.take();
+                    freeConnection.closeConnection();
+                    activeConnection.close();
                 } catch (InterruptedException | SQLException e) {
                     logger.error("Exception during shutdown poll", e);
                     Thread.currentThread().interrupt();

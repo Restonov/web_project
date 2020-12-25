@@ -12,7 +12,8 @@ import java.util.Map;
 public enum UserBuilder{
 
     /**
-     * Thread-safe Singleton instance
+     * Thread-safe singleton
+     *
      */
     INSTANCE;
 

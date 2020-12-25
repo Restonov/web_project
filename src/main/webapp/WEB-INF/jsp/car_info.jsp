@@ -6,6 +6,9 @@
 <html>
 <head>
     <title><fmt:message key="car.text.headline"/></title>
+    <script type="text/javascript">
+    <c:import url="/js/noRefresh.js"/>
+    </script>
 </head>
 <body>
     <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>

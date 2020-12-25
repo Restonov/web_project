@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class AdminIncidentListTag extends TagSupport {
 
+    //TODO c:out incident.getIncide etc
     @Override
     public int doStartTag() {
         IncidentService service = new IncidentService();
@@ -50,7 +51,7 @@ public class AdminIncidentListTag extends TagSupport {
     }
 
     private String showDeleteIncidentButton(long incidentId) {
-        StringBuilder button = new StringBuilder("<form method=\"GET\" action=\"controller\">");
+        StringBuilder button = new StringBuilder("<form method=\"POST\" action=\"controller\">");
         button.append("<input class=\"btn btn-primary\" type=\"submit\" value=\"")
                 .append("DELETE")
                 .append("\"/>")

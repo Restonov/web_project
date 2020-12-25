@@ -10,11 +10,7 @@ import java.sql.SQLException;
 /**
  * Car builder
  */
-public enum CarDaoBuilder {
-    /**
-     * Thread-safe Singleton instance
-     */
-    INSTANCE;
+public class CarDaoBuilder {
 
     /**
      * Build Car from ResultSet data

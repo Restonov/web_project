@@ -11,11 +11,7 @@ import java.time.LocalDateTime;
 /**
  * User order builder
  */
-public enum UserOrderDaoBuilder {
-    /**
-     * Thread-safe Singleton instance
-     */
-    INSTANCE;
+public class UserOrderDaoBuilder {
 
     /**
      * Build User order from ResultSet data

@@ -39,7 +39,7 @@ public class ActivateAccountCommand implements ActionCommand {
         String userEmail = request.getParameter(ParameterName.USER_EMAIL);
         Optional<User> optionalUser;
         try {
-            optionalUser = service.activateClientAndGet(userData, userEmail);
+            optionalUser = service.activateClient(userData, userEmail);
             if (optionalUser.isPresent()) {
                 HttpSession session = request.getSession();
                 User sessionUser = (User) session.getAttribute(AttributeName.USER);

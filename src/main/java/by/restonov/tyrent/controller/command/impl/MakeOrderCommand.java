@@ -43,6 +43,7 @@ public class MakeOrderCommand implements ActionCommand {
             if (optionalCar.isPresent()) {
                 Car car = optionalCar.get();
                 User user = (User) session.getAttribute(AttributeName.USER);
+                //TODO two methods in transaction
                 orderService.addOrder(user.getId(), carId);
                 carService.changeCarState(car, Car.State.BOOKED);
                 request.setAttribute(AttributeName.SUCCESSFUL_ORDER_MESSAGE, true);

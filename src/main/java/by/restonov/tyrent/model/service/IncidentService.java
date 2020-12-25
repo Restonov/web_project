@@ -20,12 +20,22 @@ public class IncidentService {
     private EntityTransaction transaction;
     private IncidentBuilder builder;
 
+    /**
+     * Default init constructor
+     *
+     */
     public IncidentService() {
         dao = new IncidentDaoImpl();
         transaction = new EntityTransaction();
         builder = IncidentBuilder.INSTANCE;
     }
 
+    /**
+     * Constructor with dao and transaction params
+     *
+     * @param dao IncidentDao
+     * @param transaction EntityTransaction
+     */
     public IncidentService(IncidentDaoImpl dao, EntityTransaction transaction, IncidentBuilder builder) {
         this.dao = dao;
         this.transaction = transaction;

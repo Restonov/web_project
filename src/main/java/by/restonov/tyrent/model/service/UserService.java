@@ -252,7 +252,7 @@ public class UserService {
      * @see #findUserByEmail(String userEmail)
      * @see DataEncryptor
      */
-    public Optional<User> activateClientAndGet(String activationData, String userEmail) throws ServiceException {
+    public Optional<User> activateClient(String activationData, String userEmail) throws ServiceException {
         Optional<User> optionalUser = findUserByEmail(userEmail);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();

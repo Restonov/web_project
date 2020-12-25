@@ -10,8 +10,13 @@
     <script>
         <c:import url="/js/validation.js" charEncoding="utf-8"/>
     </script>
+    <script type="text/javascript">
+        <c:import url="/js/noRefresh.js"/>
+    </script>
 </head>
 <body>
+<c:out value="print"/>
+
     <c:import url="/WEB-INF/jsp/common/header.jsp" charEncoding="utf-8"/>
 
     <%--@elvariable id="user_blocked" type="java.lang.Boolean"--%>
